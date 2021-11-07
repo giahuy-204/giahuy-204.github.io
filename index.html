@@ -1,130 +1,123 @@
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Homepage</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="HomepageStyle.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Libre+Franklin&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Spirax&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <title>Index</title>
+    
+    <link rel="stylesheet" href="styles/indexStyle.css">
 </head>
+<body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand">
+      <img src="images/todoist_logo.png" alt="logo" style="width:40px;">
+    </a>
+    
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="make_task.html">Make task</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact us</a>
+      </li>
+    </ul>
 
-<body style="background-color:#af7c35">
-    <img id="thumbnail" src="https://i.imgur.com/QHMQohI.jpg?1" alt="thumbnail">
-    <div class="class_container">
-        <div class="nav-toggle" id="navToggle">
-            <img id="navClosed" class="navIcon" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/hamburger.svg" alt="nav closed">
-            <img id="navOpen" class="navIcon hidden" src="https://www.richardmiddleton.me/wp-content/themes/richardcodes/assets/img/close.svg" alt="nav open">
-        </div>
-        <nav>
-            <ul>
-                <li class="active-page">
-                    <a href="index.html"><i class="fa fa-fw fa-home"></i>Homepage</a>
-                </li>
-                <li>
-                    <a href="menu.php"><i class="fa fa-fw fa-coffee"></i>Menu</a>
-                </li>
-                <li>
-                    <a href="Aboutus.html"><i class="fa fa-fw fa-envelope"></i>About us</a>
-                </li>
-                <li>
-                    <a href="Contactus.html"><i class="fa fa-fw fa-user"></i>Contact us</a>
-                </li>
-                <li>
-                    <a href="manage.php"><i class="fa fa-cloud-upload"></i> Manage Product</a>
-                </li>
-                <li>
-                    <a href="manage_order.php"><i class="fa fa-first-order"></i> Manage Order</a>
-                </li>
-            </ul>
-        </nav>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+          <a class="nav-link" href="register.html">Register</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="login.html">Login</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="images/slide1.jpg" alt="First slide" style="height: 600px;">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="images/slide2.jpg" alt="Second slide" style="height: 600px">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="images/slide3.jpg" alt="Third slide" style="height: 600px">
+      </div>
     </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-    <div>
-        <h1 style="font-weight: bold;" class="welcome">Welcome to <br>HoHuTa coffee shop</h1>
-    </div>
-
-    <p class="here_we_have">Reason to come to us: </p>
-
-    <div class="text_and_image_container">
-        <div class="text_container">
-            <p class="text1">High quality coffee</p>
-            <p class="text2">Made from natural ingredients</p>
+  <div class='container-fluid mx-auto mt-5 mb-5 col-12' style="text-align: center">
+    <div class="hd">Why you should start using us</div>
+    <br>
+    <div class="row" style="justify-content: center">
+        <div class="card col-md-3 col-12">
+            <div class="card-content">
+                <div class="card-body"> <img class="img" src="https://i.imgur.com/S7FJza5.png" />
+                    <div class="shadow"></div>
+                    <div class="card-title"> Free to use</div>
+                    <div class="card-subtitle">
+                        <p> <small class="text-muted">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non arcu tellus. Nulla mollis mauris at luctus tincidunt. Morbi egestas aliquam placerat. Duis tempus ex felis, quis luctus ligula tincidunt vitae. Praesent cursus dolor ac odio posuere molestie sed a dui. Ut ultricies pharetra porttitor. Ut pharetra enim a ultricies condimentum. Morbi sed sagittis lorem. Curabitur dapibus mi turpis.                        </small> </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="image_container">
-            <img src="https://i.imgur.com/Zpnpedd.jpg" width="98%" height="500px" alt="high quality coffee" />
+        <div class="card col-md-3 col-12 ml-2">
+            <div class="card-content">
+                <div class="card-body"> <img class="img" src="https://i.imgur.com/xUWJuHB.png" />
+                    <div class="card-title"> No ads </div>
+                    <div class="card-subtitle">
+                        <p> <small class="text-muted"> 
+                          Suspendisse non bibendum lacus. Vivamus ac nisl et est tempor ultricies eget quis mauris. Etiam magna metus, condimentum eget arcu sit amet, ullamcorper sodales tellus. Quisque in finibus nisl. Morbi quis velit urna. Donec et nunc justo. Sed vitae pretium sem. Suspendisse feugiat sapien congue lorem placerat, nec tristique arcu euismod. Sed malesuada congue tortor, ut efficitur quam pellentesque nec.
+                        </small> </p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="text_and_image_container">
-        <div class="text_container">
-            <p class="text1">Delicious desserts</p>
-            <p class="text2">Quality assurance with imported ingredients</p>
-        </div>
-        <div class="image_container">
-            <img src="https://i.imgur.com/FIc5wtX.jpg" width="98%" height="500px" alt="delicious desserts" />
-        </div>
-    </div>
-
-    <div class="text_and_image_container">
-        <div class="text_container">
-            <p class="text1">Music to chill and relax</p>
-            <p class="text2">Enjoy chilling in lofi beats</p>
-        </div>
-        <div class="image_container">
-            <img src="https://cfcdn.zulily.com/images/cache/product/1000x1201/179020/zu36820250_main_tm1458056412.jpg" width="98%" height="500px" alt="music coffee" />
-        </div>
-    </div>
-
-    <p class="best_seller">Best seller: </p>
-
-    <div class="text_and_image_container2">
-        <div class="text_container2">
-            <p class="text3">Cappuccino coffee</p>
-            <p class="text4">The cappuccino is a classic espresso and milk drink. A common misconception is that it follows the rule of thirds: one-third espresso, one-third steamed milk and one-third foamed milk.</p>
-        </div>
-        <div class="image_container2">
-            <img src="https://i.imgur.com/ptR9aqY.jpg" width="98%" height="300px" alt="cappuccino coffee" />
-        </div>
-    </div>
-
-    <div class="text_and_image_container2">
-        <div class="text_container2">
-            <p class="text3">Croissant</p>
-            <p class="text4">A stellar croissant should have a beautiful cross section boasting a honeycombed interior when sliced in half. <br>Bonus: day-old croissants are excellent for making almond variations.</p>
-        </div>
-        <div class="image_container2">
-            <img src="https://i.imgur.com/zCWU8Kr.jpg" width="98%" height="300px" alt="croissant" />
+        <div class="card col-md-3 col-12 ml-2">
+            <div class="card-content">
+                <div class="card-body"> <img class="img rck" src="https://i.imgur.com/rG3CGn3.png" />
+                    <div class="card-title"> Easy-to-learn task </div>
+                    <div class="card-subtitle">
+                        <p> <small class="text-muted">
+                          Morbi lobortis sit amet nunc sit amet elementum. Nam fermentum eros ut venenatis volutpat. Mauris ultrices, neque ut blandit imperdiet, ligula ex dictum nibh, eget auctor diam risus non felis. Aliquam erat volutpat. Quisque in neque sit amet tortor bibendum molestie. Curabitur sed condimentum erat. Morbi id hendrerit urna. Nulla commodo eleifend fringilla. Integer vel bibendum massa, nec volutpat lorem.                        </small> </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+  </div>
 
-    <p style="text-align: center; color:white;font-family: 'Spirax', cursive; font-size: 40px">"A cup of coffee starts a successful day"</p>
+  <div class="col-md-12 text-center" style="margin-top: 20px;">
+      <button type="button" class="btn btn-primary"><a href="#" class="get_started">Get started</a></button>
+  </div>
 
-    <div>
-
-        <form method="get" action="menu.php">
-            <button style="margin-left:auto;margin-right:auto;display:block;margin-top:-3%;padding: 10px;" type="submit" id="get_started">Get started</button>
-        </form>
-
-    </div>
-
-    <div class="footer-basic">
-        <footer>
-            <p class="copyright">HoHuTa coffee shop © 2018</p>
-        </footer>
-    </div>
-
-    <script src="main.js"></script>
-
+  <script>
+    $('.carousel').carousel()
+  </script>
 </body>
-
 </html>

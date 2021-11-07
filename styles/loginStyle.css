@@ -1,0 +1,21 @@
+html {
+    overflow-y: scroll;
+}
+
+body{ 
+    font: 14px sans-serif; 
+}
+
+.wrapper{ 
+    width: 360px; padding: 20px; 
+}
+
+.form-control:focus {
+    border-color: #7b49bd;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(255, 100, 255, 0.5);
+}
+
+label {
+    font-size: 26px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
