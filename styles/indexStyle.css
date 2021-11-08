@@ -1,110 +1,110 @@
 .flex-container {
-    display: flex;
-    flex-wrap: nowrap;
-    background-color: DodgerBlue;
-  }
-  
-  .flex-container > div {
-    background-color: #f1f1f1;
-    width: 33%;
-    margin: 5px;
-    text-align: center;
-    line-height: 75px;
-    font-size: 30px;
-  }
-  
-  .container {
-    text-align: center;
-  }
+display: flex;
+flex-wrap: nowrap;
+background-color: DodgerBlue;
+}
 
-  h2 {
-    color:firebrick;
-  }
-  
-  button {
-    width: 130px;
-    height: 50px;
-  }
+.flex-container > div {
+background-color: #f1f1f1;
+width: 33%;
+margin: 5px;
+text-align: center;
+line-height: 75px;
+font-size: 30px;
+}
 
-  .get_started {
-    font-size: 20px;
-    text-decoration: none;
-    color: white;
-  }
+.container {
+text-align: center;
+}
 
-  .get_started:hover {
-    text-decoration: none;
-    color:white;
-  }
+h2 {
+color:firebrick;
+}
 
-  html {
-    overflow-y: scroll;
-  }
-  
-  body {
-    font: 14px sans-serif;
-  }
+button {
+width: 130px;
+height: 50px;
+}
 
-  card {
-    cursor: pointer
+.get_started {
+font-size: 20px;
+text-decoration: none;
+color: white;
+}
+
+.get_started:hover {
+text-decoration: none;
+color:white;
+}
+
+html {
+overflow-y: scroll;
+}
+
+body {
+font: 14px sans-serif;
+}
+
+card {
+cursor: pointer
 }
 
 .hd {
-    font-size: 25px;
-    font-weight: 550
+font-size: 25px;
+font-weight: 550
 }
 
 .card.hover,
 .card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, .2)
+box-shadow: 0 20px 40px rgba(0, 0, 0, .2)
 }
 
 .img {
-    margin-bottom: 35px;
-    -webkit-filter: drop-shadow(5px 5px 5px #222);
-    filter: drop-shadow(5px 5px 5px #222)
+margin-bottom: 35px;
+-webkit-filter: drop-shadow(5px 5px 5px #222);
+filter: drop-shadow(5px 5px 5px #222)
 }
 
 .card-title {
-    font-weight: 600
+font-weight: 600
 }
 
 button.focus,
 button:focus {
-    outline: 0;
-    box-shadow: none !important
+outline: 0;
+box-shadow: none !important
 }
 
 .ft {
-    margin-top: 25px
+margin-top: 25px
 }
 
 .chk {
-    margin-bottom: 5px
+margin-bottom: 5px
 }
 
 .rck {
-    margin-top: 20px;
-    padding-bottom: 15px
+margin-top: 20px;
+padding-bottom: 15px
 }
 
 #logo {
-  width:40px;
+width:40px;
 }
 
 .d-block {
-  height:600px;
+height:600px;
 }
 
 .col-md-12 {
-  margin-top: 20px;
+margin-top: 20px;
 }
 
 .row {
-  justify-content: center;
+justify-content: center;
 }
 
 .container-fluid {
-  text-align: center;
+text-align: center;
 }
 
