@@ -16,7 +16,7 @@
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand">
-      <img src="images/todoist_logo.png" alt="logo" style="width:40px;">
+      <img src="images/todoist_logo.png" alt="logo" id ="logo">
     </a>
     
     <ul class="navbar-nav mr-auto">
@@ -35,24 +35,32 @@
     </ul>
 
     <ul class="navbar-nav">
-      <li class="nav-item">
+        <li class="nav-item">
+            <a class="nav-link" href="user_profile.html">User profile</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="register.html">Register</a>
-      </li>
-      <li class="nav-item">
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="login.html">Login</a>
-      </li>
+        </li>
     </ul>
   </nav>
 
-  <div class="col-auto d-flex align-items-center">
-    <label class="text-secondary my-2 pr-2 view-opt-label" style="font-size: 20px;">Choose folder to view</label>
-    <br>
-    <select class="custom-select" style="width: 250px;">
-        <option value="all">Folder one</option>
-        <option value="completed">Folder two</option>
-        <option value="active">Folder three</option>
-        <option value="has-due-date">Folder four</option>
-    </select>
+    <div class="col-auto d-flex align-items-center">
+        <label class="text-secondary my-2 pr-2 view-opt-label">Choose folder to view</label>
+        <br>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Folder list
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Folder one</a>
+              <a class="dropdown-item" href="#">Folder two</a>
+              <a class="dropdown-item" href="#">Folder four Clueless</a>
+              <a class="dropdown-item" id = "addFolder" data-toggle="modal" data-target="#addFolderModal">Add new folder</a>
+            </div>
+        </div>
     </div>
 
     <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
@@ -78,116 +86,308 @@
                 <i class="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip" data-placement="bottom" title="Descending"></i>
             </div>
         </div>
+        <div class="input-group rounded">
+            <input type="search" class="form-control rounded" placeholder="Search task" aria-label="Search"
+            aria-describedby="search-addon" />
+            <span class="input-group-text border-0" id="search-addon">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
         <!-- Todo list section -->
+        <br>
         <div class="row mx-1 px-5 pb-3 w-80">
             <div class="col mx-auto">
-                <!-- Todo Item 1 -->
-                <div class="row px-3 align-items-center todo-item rounded">
-                    <div class="col-auto m-1 p-0 d-flex align-items-center">
-                        <h2 class="m-0 p-0">
-                            <i class="fa fa-square-o text-primary btn m-0 p-0 d-none" data-toggle="tooltip" data-placement="bottom" title="Mark as complete"></i>
-                            <i class="fa fa-check-square-o text-primary btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Mark as todo"></i>
-                        </h2>
-                    </div>
-                    <div class="col px-1 m-1 d-flex align-items-center">
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input bg-transparent rounded px-3" readonly value="Task 02496" title="Task 02496" />
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input rounded px-3 d-none" value="Task 02496" />
-                    </div>
-                    <div class="col-auto m-1 p-0 px-3 d-none">
-                    </div>
-                    <div class="col-auto m-1 p-0 todo-actions">
-                        <div class="row d-flex align-items-center justify-content-end">
-                            <h5 class="m-0 p-0 px-2">
-                                <i class="fa fa-pencil text-info btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Edit todo"></i>
-                            </h5>
-                            <h5 class="m-0 p-0 px-2">
-                                <i class="fa fa-trash-o text-danger btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Delete todo"></i>
-                            </h5>
-                        </div>
-                        <div class="row todo-created-info">
-                            <div class="col-auto d-flex align-items-center pr-2">
-                                <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                                <label class="date-label my-2 text-black-50">28th Jun 2020</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Todo Item 2 -->
-                <div class="row px-3 align-items-center todo-item rounded">
-                    <div class="col-auto m-1 p-0 d-flex align-items-center">
-                        <h2 class="m-0 p-0">
-                            <i class="fa fa-square-o text-primary btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Mark as complete"></i>
-                            <i class="fa fa-check-square-o text-primary btn m-0 p-0 d-none" data-toggle="tooltip" data-placement="bottom" title="Mark as todo"></i>
-                        </h2>
-                    </div>
-                    <div class="col px-1 m-1 d-flex align-items-center">
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input bg-transparent rounded px-3" readonly value="Task 49260" title="Task 49260" />
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input rounded px-3 d-none" value="Task 49260" />
-                    </div>
-                    <div class="col-auto m-1 p-0 px-3">
-                        <div class="row">
-                            <div class="col-auto d-flex align-items-center rounded bg-white border border-warning">
-                                <i class="fa fa-hourglass-2 my-2 px-2 text-warning btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Due on date"></i>
-                                <h6 class="text my-2 pr-2">28th Jun 2020</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto m-1 p-0 todo-actions">
-                        <div class="row d-flex align-items-center justify-content-end">
-                            <h5 class="m-0 p-0 px-2">
-                                <i class="fa fa-pencil text-info btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Edit todo"></i>
-                            </h5>
-                            <h5 class="m-0 p-0 px-2">
-                                <i class="fa fa-trash-o text-danger btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Delete todo"></i>
-                            </h5>
-                        </div>
-                        <div class="row todo-created-info">
-                            <div class="col-auto d-flex align-items-center pr-2">
-                                <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                                <label class="date-label my-2 text-black-50">28th Jun 2020</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Todo Item 3 -->
-                <div class="row px-3 align-items-center todo-item editing rounded">
-                    <div class="col-auto m-1 p-0 d-flex align-items-center">
-                        <h2 class="m-0 p-0">
-                            <i class="fa fa-square-o text-primary btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Mark as complete"></i>
-                            <i class="fa fa-check-square-o text-primary btn m-0 p-0 d-none" data-toggle="tooltip" data-placement="bottom" title="Mark as todo"></i>
-                        </h2>
-                    </div>
-                    <div class="col px-1 m-1 d-flex align-items-center">
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input bg-transparent rounded px-3 d-none" readonly value="Task 64902" title="Task 64902" />
-                        <input type="text" class="form-control form-control-lg border-0 edit-todo-input rounded px-3" value="Task 64902" />
-                    </div>
-                    <div class="col-auto m-1 p-0 px-3 d-none">
-                    </div>
-                    <div class="col-auto m-1 p-0 todo-actions">
-                        <div class="row d-flex align-items-center justify-content-end">
-                            <h5 class="m-0 p-0 px-2 edit-icon">
-                                <i class="fa fa-pencil text-info btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Edit todo"></i>
-                            </h5>
-                            <h5 class="m-0 p-0 px-2">
-                                <i class="fa fa-trash-o text-danger btn m-0 p-0" data-toggle="tooltip" data-placement="bottom" title="Delete todo"></i>
-                            </h5>
-                        </div>
-                        <div class="row todo-created-info">
-                            <div class="col-auto d-flex align-items-center pr-2">
-                                <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
-                                <label class="date-label my-2 text-black-50">28th Jun 2020</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <table class="table table-bordered" >
+                    <thead class = " thead-dark">
+                      <tr>
+                        <th scope="col">Task ID</th>
+                        <th scope="col">Task name</th>
+                        <th scope="col">Task date created</th>
+                        <th scope="col">Task deadline</th>
+                        <th scope="col">Task details</th>
+                        <th scope="col">Options</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Task 19024</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-success" title="Mark as completed" data-toggle="modal" data-target="#completedModal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-warning" title="Move to another folder" data-toggle="modal" data-target="#moveModal"><i class="fa fa-exchange" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletedModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Task 70518</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-success" title="Mark as completed" data-toggle="modal" data-target="#completedModal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-warning" title="Move to another folder" data-toggle="modal" data-target="#moveModal"><i class="fa fa-exchange" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletedModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Task 3012</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>dd/mm/yyyy</td>
+                        <td>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-success" title="Mark as completed" data-toggle="modal" data-target="#completedModal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-warning" title="Move to another folder" data-toggle="modal" data-target="#moveModal"><i class="fa fa-exchange" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletedModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 <!-- Create todo section -->
                 <div class="row m-1 p-3">
                     <div class="col-auto px-0 mx-0 mr-2">
-                        <button type="button" class="btn btn-success">Add</button>
-                        <button type="button" class="btn btn-info">Share</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal">Add new task</button>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#shareModal">Share</button>
+                    </div>
+                </div>
+                <!-- The Modal -->
+                <div class="modal fade" id="addModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Add task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="name">Task name:</label>
+                                  <input type="text" class="form-control" placeholder="Task name" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Task deadline:</label>
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detail">Task details:</label>
+                                    <textarea class="form-control" rows="3" id = "detail"></textarea>
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Add task</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="editModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Edit task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="name">Task name:</label>
+                                  <input type="text" class="form-control" placeholder="Task name" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">Task deadline:</label>
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="detail">Task details:</label>
+                                    <textarea class="form-control" rows="3" id = "detail"></textarea>
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Edit task</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addFolderModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Add folder</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="name">Input folder name to add:</label>
+                                  <input type="text" class="form-control" placeholder="Folder name" id="name">
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Add folder</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="moveModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Move task to another folder</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Choose folder to move: </label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Folder list
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Folder one</a>
+                                        <a class="dropdown-item" href="#">Folder two</a>
+                                        <a class="dropdown-item" href="#">Folder four Clueless</a>
+                                        <a class="dropdown-item" id = "addFolder "data-toggle="modal" data-target="#addFolderModal">Add new folder</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="completedModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Mark task as done</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Are you sure you want to mark this task as done? </label>
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="deletedModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Deleted task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="name">Are you sure you want to delete this task? </label>
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="shareModal">
+                    <div class="modal-dialog">
+                    <div class="modal-content">        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h4 class="modal-title">Share task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                  <label for="name">Input username to share:</label>
+                                  <input type="text" class="form-control" placeholder="Username" id="name">
+                                </div>
+                            </form>
+                        </div>    
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Share</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(function() {
+            $("body").delegate("#datepicker", "focusin", function(){
+                $(this).datepicker();
+            });
+        });
+    </script>
 </body>
+</html>

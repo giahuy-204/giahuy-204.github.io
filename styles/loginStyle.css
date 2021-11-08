@@ -19,3 +19,11 @@ label {
     font-size: 26px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+#remember {
+   font-size: 18px;
+}
+
+#logo {
+    width:40px;
+  }

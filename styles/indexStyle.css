@@ -87,3 +87,24 @@ button:focus {
     margin-top: 20px;
     padding-bottom: 15px
 }
+
+#logo {
+  width:40px;
+}
+
+.d-block {
+  height:600px;
+}
+
+.col-md-12 {
+  margin-top: 20px;
+}
+
+.row {
+  justify-content: center;
+}
+
+.container-fluid {
+  text-align: center;
+}
+
