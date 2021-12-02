@@ -11,6 +11,7 @@
     <title>User profile</title>
     
     <link rel="stylesheet" href="styles/user_profileStyle.css">
+    <script src="script/user_profile.js"></script>
 </head>
 <body>
 
@@ -54,7 +55,7 @@
 
   <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>(User name)</h1></div>
+  		<div class="col-sm-10"><h1>User: <span id="username" style="color: red;"></span></h1></div>
     </div>
     <div class="row">
   		<div class="col-sm-3"><!--left col-->
@@ -68,12 +69,14 @@
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Account created in</strong></span> 16/10/2021</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task created</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task completed</strong></span> 78</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task ongoing</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task outdated</strong></span> 10</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Account created in</strong></span><span id = "created"></span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Account updated in</strong></span><span id = "updated"></span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Task created</strong></span>N/A</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Task completed</strong></span>N/A</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Task ongoing</strong></span>N/A</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Task outdated</strong></span>N/A</li>
           </ul> 
+          <a class ="btn btn-warning" onclick="logout();">Log out</a>
         </div><!--/col-3-->
     	<div class="col-sm-9">
             <h2>Profile settings</h2>
