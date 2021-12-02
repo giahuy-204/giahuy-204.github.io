@@ -2,7 +2,7 @@
 I wonder what is this website
 ## How do I access your website? 
 
-Go yo your browser and paste this to your bar:
+Go to your browser and paste this to your bar:
 
 ```
 https://giahuy-204.github.io/
