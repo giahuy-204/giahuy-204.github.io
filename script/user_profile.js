@@ -33,10 +33,23 @@ function getUser() {
     }
     getUser();
 
-function logout() {
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("uid");
-    localStorage.removeItem("client");
-    window.location.href = 'login.html'
- }
+function logOut(e) {
+  e.preventDefault();
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You need to login again if you want to access this page!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+  }).then((result) => {
+      if (result.isConfirmed) {
+          localStorage.removeItem("jwt");
+          localStorage.removeItem("uid");
+          localStorage.removeItem("client");
+          window.location.href = 'login.html'
+      }
+  })
+}
 

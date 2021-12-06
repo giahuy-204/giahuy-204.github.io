@@ -8,6 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css" integrity="sha512-EaaldggZt4DPKMYBa143vxXQqLq5LE29DG/0OoVenoyxDrAScYrcYcHIuxYO9YNTIQMgD8c8gIUU8FQw7WpXSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    
     <title>User profile</title>
     
     <link rel="stylesheet" href="styles/user_profileStyle.css">
@@ -76,7 +78,7 @@
             <li class="list-group-item text-right"><span class="pull-left"><strong>Task ongoing</strong></span>N/A</li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>Task outdated</strong></span>N/A</li>
           </ul> 
-          <a class ="btn btn-warning" onclick="logout();">Log out</a>
+          <button type="submit" class="btn btn-success btn-flat" onclick="logOut(event)"><i class="fa fa-check-circle"></i> Log out</button>
         </div><!--/col-3-->
     	<div class="col-sm-9">
             <h2>Profile settings</h2>
