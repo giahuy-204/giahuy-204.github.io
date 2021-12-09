@@ -15,10 +15,9 @@ let serverUrl = 'http://herokutuan.herokuapp.com';
 
 function addTaskFunction() {
     var taskName = document.getElementById('addTask_name').value;
-    console.log(taskName);
     if (taskName == "") {
         Swal.fire({
-            text: 'Please give task a name!',
+            text: 'Please give your task a name!',
             icon: 'error',
             confirmButtonText: 'OK'
         });
