@@ -2,10 +2,6 @@ body {
     font: 14px sans-serif; 
 }
 
-html {
-    overflow-y: scroll;
-}
-
 .text-secondary {
     font-size: 20px;
 }

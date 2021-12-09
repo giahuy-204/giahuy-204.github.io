@@ -1,37 +1,73 @@
-window.onload = function () {
-    bootlint.showLintReportForCurrentDocument([], {
-        hasProblems: false,
-        problemFree: false
-    });
+var jwt = localStorage.getItem("jwt");
+var uid = localStorage.getItem("uid");
+var client = localStorage.getItem("client");
 
-    $('[data-toggle="tooltip"]').tooltip();
+console.log(jwt);
+console.log(uid);
+console.log(client);
 
-    function formatDate(date) {
-        return (
-            date.getDate() +
-            "/" +
-            (date.getMonth() + 1) +
-            "/" +
-            date.getFullYear()
-        );
+if (jwt == null) {
+    alert ('You need to login before using this page');
+    window.location.href = 'login.html';
+}
+
+let serverUrl = 'http://herokutuan.herokuapp.com';
+
+function addTaskFunction() {
+    var taskName = document.getElementById('addTask_name').value;
+    console.log(taskName);
+    if (taskName == "") {
+        Swal.fire({
+            text: 'Please give task a name!',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    } else {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", `${serverUrl}/task_lists`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader("Access-Token", jwt);
+        xhttp.setRequestHeader("Uid", uid);
+        xhttp.setRequestHeader("Client", client);
+        xhttp.send(JSON.stringify({
+            "name": taskName
+        }));
+
+        
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 201) {
+                    Swal.fire({
+                        text: 'Successful created task! You can create another task or cancel now.',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                } else {
+                    Swal.fire({
+                        text: 'Something wrong!',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        };
     }
+      
+}
 
-    var currentDate = formatDate(new Date());
+// const objects = JSON.parse(this.responseText);
 
-    $(".due-date-button").datepicker({
-        format: "dd/mm/yyyy",
-        autoclose: true,
-        todayHighlight: true,
-        startDate: currentDate,
-        orientation: "bottom right"
-    });
+//             var task_lists = document.getElementById("task_lists");
 
-    $(".due-date-button").on("click", function (event) {
-        $(".due-date-button")
-            .datepicker("show")
-            .on("changeDate", function (dateChangeEvent) {
-                $(".due-date-button").datepicker("hide");
-                $(".due-date-label").text(formatDate(dateChangeEvent.date));
-            });
-    });
-};
+//             var th_id = document.createElement("th");
+//             th_id.innerHTML = objects["id"];
+
+//             var td_name = document.createElement("td");
+//             td_name.innerHTML = objects["name"];
+
+//             var td_created = document.createElement("td");
+//             td_created.innerHTML = objects["created_at"];
+
+//             task_lists.appendChild(th_id);
+//             task_lists.appendChild(td_name);
+//             task_lists.appendChild(td_created);

@@ -7,10 +7,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css" integrity="sha512-EaaldggZt4DPKMYBa143vxXQqLq5LE29DG/0OoVenoyxDrAScYrcYcHIuxYO9YNTIQMgD8c8gIUU8FQw7WpXSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Make task</title>
     
     <link rel="stylesheet" href="styles/make_taskStyle.css">
+    <script src="script/make_task.js"></script>
 </head>
 <body>
 
@@ -114,39 +116,9 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr id="task_lists">
                         <th scope="row">1</th>
                         <td>Task 19024</td>
-                        <td>dd/mm/yyyy</td>
-                        <td>dd/mm/yyyy</td>
-                        <td>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-success" title="Mark as completed" data-toggle="modal" data-target="#completedModal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-warning" title="Move to another folder" data-toggle="modal" data-target="#moveModal"><i class="fa fa-exchange" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletedModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Task 70518</td>
-                        <td>dd/mm/yyyy</td>
-                        <td>dd/mm/yyyy</td>
-                        <td>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-primary" title="Edit" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-success" title="Mark as completed" data-toggle="modal" data-target="#completedModal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-warning" title="Move to another folder" data-toggle="modal" data-target="#moveModal"><i class="fa fa-exchange" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-danger" title="Delete" data-toggle="modal" data-target="#deletedModal"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Task 3012</td>
                         <td>dd/mm/yyyy</td>
                         <td>dd/mm/yyyy</td>
                         <td>
@@ -182,7 +154,7 @@
                             <form>
                                 <div class="form-group">
                                   <label for="name">Task name:</label>
-                                  <input type="text" class="form-control" placeholder="Task name" id="name">
+                                  <input type="text" class="form-control" placeholder="Task name" id="addTask_name">
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Task deadline:</label>
@@ -201,7 +173,7 @@
                         </div>    
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success" data-dismiss="modal">Add task</button>
+                            <button type="button" class="btn btn-success" onclick="addTaskFunction()">Add task</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>

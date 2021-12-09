@@ -2,6 +2,11 @@ var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 
+if (jwt == null) {
+  alert ('You need to login before using this page');
+  window.location.href = 'login.html';
+}
+
 console.log(jwt);
 console.log(uid);
 console.log(client);
