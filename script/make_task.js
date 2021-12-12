@@ -2,7 +2,7 @@ var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 
-var counter = -1;
+var counter = 0;
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
@@ -30,8 +30,6 @@ function fetchTaskFunction() {
                     document.getElementById("notify").innerHTML = "Your task is empty! Start to make some by press the button below";
                 } else {
                     for (let list of objects) {
-                        counter++;
-
                         //create random text for td detail test
                         var tokens = ['Apple', 'Banana', 'The', 'Task'];
                         var text = '';
@@ -140,6 +138,7 @@ function fetchTaskFunction() {
                                 })
                             });
                         });
+                        counter++;
                     }
                 }
             }
