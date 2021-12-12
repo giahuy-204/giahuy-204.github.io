@@ -34,18 +34,12 @@ function loginFunction() {
     }));
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
-        const objects = JSON.parse(this.responseText);
-        console.log(objects);
         jwt = xhttp.getResponseHeader('Access-Token');
         uid = xhttp.getResponseHeader('Uid');
         client = xhttp.getResponseHeader('Client');
         localStorage.setItem('jwt', jwt);
         localStorage.setItem('uid', uid);
         localStorage.setItem('client', client);
-        console.log(jwt);
-        console.log(uid);
-        console.log(client);
-        console.log(this.status);
         if (this.status == 200) {
           Swal.fire({
             text: 'Login successful',

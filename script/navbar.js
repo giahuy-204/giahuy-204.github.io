@@ -1,7 +1,6 @@
 
 var jwt = null;
 jwt = localStorage.getItem("jwt");
-console.log(jwt);
 
 if (jwt != null) {
     document.getElementById("login").style.display = "none";
