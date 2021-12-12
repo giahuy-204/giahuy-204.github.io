@@ -1,12 +1,12 @@
 body {
-    font: 14px sans-serif; 
+    font: 14px sans-serif;
 }
 
 
 #logo {
-    width:40px;
+    width: 40px;
 }
 
 a {
-    cursor:pointer;
+    cursor: pointer;
 }

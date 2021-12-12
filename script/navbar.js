@@ -1,17 +1,4 @@
 
-// const btn = document.getElementsByClassName("btn btn-danger")[1];
-// btn.addEventListener('click', function() {
-//     console.log("uwu");
-// });
-// $(document).ready(function () {
-//     $(".btn btn-danger").click(function (event) {
-//         console.log("TwT");
-//     });
-// });
-
-// $(document).on("click", "#test", function() {
-//     console.log("rip'");
-// });
 var jwt = null;
 jwt = localStorage.getItem("jwt");
 console.log(jwt);
@@ -48,7 +35,7 @@ function logOut(e) {
                     window.location.href = 'index.html'
                 }
             })
-            
+
         }
     })
 }

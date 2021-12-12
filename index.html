@@ -1,27 +1,30 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-    
-    <title>Index</title>
-    
-    <link rel="stylesheet" href="styles/indexStyle.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+  <title>Index</title>
+
+  <link rel="stylesheet" href="styles/indexStyle.css">
 </head>
+
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="index.html">
-      <img src="images/todoist_logo.png" alt="logo" id = "logo" style = "width: 40px">
+      <img src="images/todoist_logo.png" alt="logo" id="logo" style="width: 40px">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+      aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -39,25 +42,25 @@
       </ul>
 
       <ul class="navbar-nav">
-        <div id = "profile">
-            <li class="nav-item" >
-                <a class="nav-link" href="user_profile.html">User profile</a>
-            </li>
+        <div id="profile">
+          <li class="nav-item">
+            <a class="nav-link" href="user_profile.html">User profile</a>
+          </li>
         </div>
-        <div id = "logout">
-            <li class="nav-item">
-                <a class="nav-link" onclick="logOut(event)">Log out</a>
-            </li>
+        <div id="logout">
+          <li class="nav-item">
+            <a class="nav-link" onclick="logOut(event)">Log out</a>
+          </li>
         </div>
-        <div id = "register">
-            <li class="nav-item" >
-                <a class="nav-link" href="register.html">Register</a>
-            </li>
+        <div id="register">
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
         </div>
-        <div id = "login">
-            <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
-            </li>
+        <div id="login">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
         </div>
       </ul>
     </div>
@@ -94,46 +97,57 @@
     <div class="hd">Why you should start using us</div>
     <br>
     <div class="row">
-        <div class="card col-md-3 col-12">
-            <div class="card-content">
-                <div class="card-body"> <img class="img" src="https://i.imgur.com/S7FJza5.png" />
-                    <div class="shadow"></div>
-                    <div class="card-title"> Free to use</div>
-                    <div class="card-subtitle">
-                        <p> <small class="text-muted">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non arcu tellus. Nulla mollis mauris at luctus tincidunt. Morbi egestas aliquam placerat. Duis tempus ex felis, quis luctus ligula tincidunt vitae. Praesent cursus dolor ac odio posuere molestie sed a dui. Ut ultricies pharetra porttitor. Ut pharetra enim a ultricies condimentum. Morbi sed sagittis lorem. Curabitur dapibus mi turpis.                        </small> </p>
-                    </div>
-                </div>
+      <div class="card col-md-3 col-12">
+        <div class="card-content">
+          <div class="card-body"> <img class="img" src="https://i.imgur.com/S7FJza5.png" />
+            <div class="shadow"></div>
+            <div class="card-title"> Free to use</div>
+            <div class="card-subtitle">
+              <p> <small class="text-muted">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non arcu tellus. Nulla mollis mauris
+                  at luctus tincidunt. Morbi egestas aliquam placerat. Duis tempus ex felis, quis luctus ligula
+                  tincidunt vitae. Praesent cursus dolor ac odio posuere molestie sed a dui. Ut ultricies pharetra
+                  porttitor. Ut pharetra enim a ultricies condimentum. Morbi sed sagittis lorem. Curabitur dapibus mi
+                  turpis. </small> </p>
             </div>
+          </div>
         </div>
-        <div class="card col-md-3 col-12 ml-2">
-            <div class="card-content">
-                <div class="card-body"> <img class="img" src="https://i.imgur.com/xUWJuHB.png" />
-                    <div class="card-title"> No ads </div>
-                    <div class="card-subtitle">
-                        <p> <small class="text-muted"> 
-                          Suspendisse non bibendum lacus. Vivamus ac nisl et est tempor ultricies eget quis mauris. Etiam magna metus, condimentum eget arcu sit amet, ullamcorper sodales tellus. Quisque in finibus nisl. Morbi quis velit urna. Donec et nunc justo. Sed vitae pretium sem. Suspendisse feugiat sapien congue lorem placerat, nec tristique arcu euismod. Sed malesuada congue tortor, ut efficitur quam pellentesque nec.
-                        </small> </p>
-                    </div>
-                </div>
+      </div>
+      <div class="card col-md-3 col-12 ml-2">
+        <div class="card-content">
+          <div class="card-body"> <img class="img" src="https://i.imgur.com/xUWJuHB.png" />
+            <div class="card-title"> No ads </div>
+            <div class="card-subtitle">
+              <p> <small class="text-muted">
+                  Suspendisse non bibendum lacus. Vivamus ac nisl et est tempor ultricies eget quis mauris. Etiam magna
+                  metus, condimentum eget arcu sit amet, ullamcorper sodales tellus. Quisque in finibus nisl. Morbi quis
+                  velit urna. Donec et nunc justo. Sed vitae pretium sem. Suspendisse feugiat sapien congue lorem
+                  placerat, nec tristique arcu euismod. Sed malesuada congue tortor, ut efficitur quam pellentesque nec.
+                </small> </p>
             </div>
+          </div>
         </div>
-        <div class="card col-md-3 col-12 ml-2">
-            <div class="card-content">
-                <div class="card-body"> <img class="img rck" src="https://i.imgur.com/rG3CGn3.png" />
-                    <div class="card-title"> Easy-to-learn task </div>
-                    <div class="card-subtitle">
-                        <p> <small class="text-muted">
-                          Morbi lobortis sit amet nunc sit amet elementum. Nam fermentum eros ut venenatis volutpat. Mauris ultrices, neque ut blandit imperdiet, ligula ex dictum nibh, eget auctor diam risus non felis. Aliquam erat volutpat. Quisque in neque sit amet tortor bibendum molestie. Curabitur sed condimentum erat. Morbi id hendrerit urna. Nulla commodo eleifend fringilla. Integer vel bibendum massa, nec volutpat lorem.                        </small> </p>
-                    </div>
-                </div>
+      </div>
+      <div class="card col-md-3 col-12 ml-2">
+        <div class="card-content">
+          <div class="card-body"> <img class="img rck" src="https://i.imgur.com/rG3CGn3.png" />
+            <div class="card-title"> Easy-to-learn task </div>
+            <div class="card-subtitle">
+              <p> <small class="text-muted">
+                  Morbi lobortis sit amet nunc sit amet elementum. Nam fermentum eros ut venenatis volutpat. Mauris
+                  ultrices, neque ut blandit imperdiet, ligula ex dictum nibh, eget auctor diam risus non felis. Aliquam
+                  erat volutpat. Quisque in neque sit amet tortor bibendum molestie. Curabitur sed condimentum erat.
+                  Morbi id hendrerit urna. Nulla commodo eleifend fringilla. Integer vel bibendum massa, nec volutpat
+                  lorem. </small> </p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 
   <div class="col-md-12 text-center">
-      <button type="button" class="btn btn-primary"><a href="#" class="get_started">Get started</a></button>
+    <button type="button" class="btn btn-primary"><a href="login.html" class="get_started">Get started</a></button>
   </div>
 
   <script>
@@ -141,4 +155,5 @@
   </script>
   <script src="script/navbar.js"></script>
 </body>
+
 </html>

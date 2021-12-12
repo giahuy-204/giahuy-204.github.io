@@ -1,16 +1,15 @@
-
-
-body{ 
-    font: 14px sans-serif; 
+body {
+    font: 14px sans-serif;
 }
 
-.wrapper{ 
-    width: 360px; padding: 20px; 
+.wrapper {
+    width: 360px;
+    padding: 20px;
 }
 
 label {
     font-size: 26px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .form-control:focus {
@@ -19,9 +18,9 @@ label {
 }
 
 #logo {
-    width:40px;
-  }
+    width: 40px;
+}
 
-  a {
-    cursor:pointer;
+a {
+    cursor: pointer;
 }

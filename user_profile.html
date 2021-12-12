@@ -1,30 +1,35 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css" integrity="sha512-EaaldggZt4DPKMYBa143vxXQqLq5LE29DG/0OoVenoyxDrAScYrcYcHIuxYO9YNTIQMgD8c8gIUU8FQw7WpXSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
-    
-    <title>User profile</title>
-    
-    <link rel="stylesheet" href="styles/user_profileStyle.css">
-    <script src="script/user_profile.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.css"
+    integrity="sha512-EaaldggZt4DPKMYBa143vxXQqLq5LE29DG/0OoVenoyxDrAScYrcYcHIuxYO9YNTIQMgD8c8gIUU8FQw7WpXSQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+
+  <title>User profile</title>
+
+  <link rel="stylesheet" href="styles/user_profileStyle.css">
+  <script src="script/user_profile.js"></script>
 </head>
+
 <body>
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a class="navbar-brand" href="index.html">
-      <img src="images/todoist_logo.png" alt="logo" id = "logo" style = "width: 40px">
+      <img src="images/todoist_logo.png" alt="logo" id="logo" style="width: 40px">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+      aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <div class="collapse navbar-collapse" id="navbarToggler">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -42,25 +47,25 @@
       </ul>
 
       <ul class="navbar-nav">
-        <div id = "profile">
-            <li class="nav-item" >
-                <a class="nav-link active" href="user_profile.html">User profile</a>
-            </li>
+        <div id="profile">
+          <li class="nav-item">
+            <a class="nav-link active" href="user_profile.html">User profile</a>
+          </li>
         </div>
-        <div id = "logout">
-            <li class="nav-item">
-                <a class="nav-link" onclick="logOut(event)">Log out</a>
-            </li>
+        <div id="logout">
+          <li class="nav-item">
+            <a class="nav-link" onclick="logOut(event)">Log out</a>
+          </li>
         </div>
-        <div id = "register">
-            <li class="nav-item" >
-                <a class="nav-link" href="register.html">Register</a>
-            </li>
+        <div id="register">
+          <li class="nav-item">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
         </div>
-        <div id = "login">
-            <li class="nav-item">
-                <a class="nav-link" href="login.html">Login</a>
-            </li>
+        <div id="login">
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
         </div>
       </ul>
     </div>
@@ -68,79 +73,106 @@
 
   <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>User: <span id="username" style="color: red;"></span></h1></div>
+      <div class="col-sm-10">
+        <h1>User: <span id="username" style="color: red;"></span></h1>
+      </div>
     </div>
     <div class="row">
-  		<div class="col-sm-3"><!--left col-->
-              
+      <div class="col-sm-3">
+        <!--left col-->
 
-      <div class="text-center">
-        <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h6>Upload a different photo...</h6>
-        <input type="file" class="text-center center-block file-upload">
-      </div></hr><br>
-          
-          <ul class="list-group">
-            <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Account created in</strong></span><span id = "created"></span></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Account updated in</strong></span><span id = "updated"></span></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task created</strong></span>N/A</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task completed</strong></span>N/A</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task ongoing</strong></span>N/A</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Task outdated</strong></span>N/A</li>
-          </ul> 
-          <button type="submit" class="btn btn-success btn-flat" onclick="logOut(event)"><i class="fa fa-check-circle"></i> Log out</button>
-        </div><!--/col-3-->
-    	<div class="col-sm-9">
-            <h2>Profile settings</h2>
-          <div class="tab-content">
-            <div class="tab-pane active" id="home">
-                <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">                         
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">                        
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">                       
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone number" title="enter your phone number if any.">
-                          </div>
-                      </div>
-          
-                      <div class="form-group">  
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
 
-                      <div class="form-group">                     
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Address</h4></label>
-                              <input type="text" class="form-control" id="location" placeholder="Your location" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                                <button type="button" class="btn btn-primary">Save</button>
-                                <button type="button" class="btn btn-secondary">Reset</button>
-                            </div>
-                      </div>
-              	</form>   
-              <hr>            
-        </div><!--/col-9-->
-    </div><!--/row-->
-    <script src="script/navbar.js"></script>
+        <div class="text-center">
+          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+            alt="avatar">
+          <h6>Upload a different photo...</h6>
+          <input type="file" class="text-center center-block file-upload">
+        </div>
+        </hr><br>
+
+        <ul class="list-group">
+          <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Account created in</strong></span><span
+              id="created"></span></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Account updated in</strong></span><span
+              id="updated"></span></li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Task created</strong></span>N/A</li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Task completed</strong></span>N/A</li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Task ongoing</strong></span>N/A</li>
+          <li class="list-group-item text-right"><span class="pull-left"><strong>Task outdated</strong></span>N/A</li>
+        </ul>
+        <button type="submit" class="btn btn-success btn-flat" onclick="logOut(event)"><i
+            class="fa fa-check-circle"></i> Log out</button>
+      </div>
+      <!--/col-3-->
+      <div class="col-sm-9">
+        <h2>Profile settings</h2>
+        <div class="tab-content">
+          <div class="tab-pane active" id="home">
+            <hr>
+            <form class="form" action="##" method="post" id="registrationForm">
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <label for="first_name">
+                    <h4>First name</h4>
+                  </label>
+                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First name"
+                    title="enter your first name if any.">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <label for="last_name">
+                    <h4>Last name</h4>
+                  </label>
+                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last name"
+                    title="enter your last name if any.">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <label for="phone">
+                    <h4>Phone</h4>
+                  </label>
+                  <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone number"
+                    title="enter your phone number if any.">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <label for="email">
+                    <h4>Email</h4>
+                  </label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
+                    title="enter your email.">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <label for="email">
+                    <h4>Address</h4>
+                  </label>
+                  <input type="text" class="form-control" id="location" placeholder="Your location"
+                    title="enter a location">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <br>
+                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="button" class="btn btn-secondary">Reset</button>
+                </div>
+              </div>
+            </form>
+            <hr>
+          </div>
+          <!--/col-9-->
+        </div>
+        <!--/row-->
+        <script src="script/navbar.js"></script>
 </body>
+
 </html>

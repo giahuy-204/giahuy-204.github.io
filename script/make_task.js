@@ -2,8 +2,10 @@ var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 
+var counter = -1;
+
 if (jwt == null) {
-    alert ('You need to login before using this page');
+    alert('You need to login before try to make a task!');
     window.location.href = 'login.html';
 }
 
@@ -18,12 +20,19 @@ function fetchTaskFunction() {
     xhttp.setRequestHeader("Client", client);
     xhttp.send();
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                const objects = JSON.parse(this.responseText); 
+                const objects = JSON.parse(this.responseText);
 
                 for (let list of objects) {
+                    counter++;
+                    var tokens = ['Apple', 'Banana', 'The', 'Task'];
+                    var text = '';
+                    for (var i = 0; i < 11; i++) {
+                        text += tokens[Math.floor(Math.random() * tokens.length)];
+                    }
+
                     const task_lists = document.getElementById("task_lists");
 
                     const tr = document.createElement("tr");
@@ -38,7 +47,7 @@ function fetchTaskFunction() {
                     const completed_button = document.createElement("button");
                     const move_button = document.createElement("button");
                     const delete_button = document.createElement("button");
-                    
+
                     const edit_i = document.createElement("i");
                     const completed_i = document.createElement("i");
                     const move_i = document.createElement("i");
@@ -72,20 +81,20 @@ function fetchTaskFunction() {
 
                     th_id.setAttribute("id", list["id"]);
 
-                    th_id.innerHTML = list["id"];
+                    th_id.innerHTML = counter + 1;
                     td_name.innerHTML = list["name"];
                     if (list["done_count"] == 0) {
                         td_status.innerHTML = "Not done";
-                    }else {
+                    } else {
                         td_status.innerHTML = "Done";
                     }
-                    
+
                     td_deadline.innerHTML = "dd/mm/yyyy";
-                    td_details.innerHTML = "lorem ipsum dolor amet";
+                    td_details.innerHTML = text;
 
                     //create table
                     task_lists.appendChild(tr);
-                    tr.appendChild(th_id);  
+                    tr.appendChild(th_id);
                     tr.appendChild(td_name);
                     tr.appendChild(td_status);
                     tr.appendChild(td_deadline);
@@ -102,31 +111,30 @@ function fetchTaskFunction() {
                     move_button.appendChild(move_i);
 
                     td_options.appendChild(delete_button);
-                    delete_button.appendChild(delete_i);  
+                    delete_button.appendChild(delete_i);
 
-                    console.log(objects.length);
-                    console.log(th_id.id);
-
-                    // let id = [];
-                    // id.push(th_id);
-                    // console.log(id);
-                    // console.log(td_options.value);
-                    //  let btn = document.getElementById('delete_btn');
-                    // btn.addEventListener('click', function() {
-                    //     xhttp.open("DELETE", `${serverUrl}/task_lists/${id}`);
-                    //     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                    //     xhttp.setRequestHeader("Access-Token", jwt);
-                    //     xhttp.setRequestHeader("Uid", uid);
-                    //     xhttp.setRequestHeader("Client", client);
-                    //     xhttp.send();
-                    // });
+                    const btn = document.getElementsByClassName("btn btn-danger")[counter];
+                    btn.addEventListener('click', function () {
+                        let confirm = document.getElementById('delete_btn');
+                        confirm.addEventListener('click', function () {
+                            xhttp.open("DELETE", `${serverUrl}/task_lists/${th_id.id}`);
+                            xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                            xhttp.setRequestHeader("Access-Token", jwt);
+                            xhttp.setRequestHeader("Uid", uid);
+                            xhttp.setRequestHeader("Client", client);
+                            xhttp.send();
+                            Swal.fire({
+                                text: 'Task deleted! Reload webpage',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            })
+                        });
+                    });
                 }
-            } else {
-                alert ('You need to login before using this page!')
-                window.location.href = 'login.html'
-                localStorage.removeItem("jwt");
-                localStorage.removeItem("uid");
-                localStorage.removeItem("client");
             }
         }
     }
@@ -139,15 +147,15 @@ function searchFunction() {
     table = document.getElementById("table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
             txtValue = td.textContent || td.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
+                tr[i].style.display = "";
             } else {
-            tr[i].style.display = "none";
+                tr[i].style.display = "none";
             }
-        }       
+        }
     }
 }
 
@@ -171,14 +179,18 @@ function addTaskFunction() {
             "name": taskName
         }));
 
-        
-        xhttp.onreadystatechange = function() {
+
+        xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 201) {
                     Swal.fire({
-                        text: 'Successful created task! Please refresh webpage to make it appears.',
+                        text: 'Successful created task! Reload webpage',
                         icon: 'success',
                         confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
                     });
                 } else {
                     Swal.fire({
@@ -189,7 +201,7 @@ function addTaskFunction() {
                 }
             }
         };
-    }  
+    }
 }
 
 
