@@ -166,7 +166,6 @@ function searchFunction() {
     }
 }
 
-
 function addTaskFunction() {
     var taskName = document.getElementById('addTask_name').value;
     if (taskName == "") {
@@ -185,7 +184,6 @@ function addTaskFunction() {
         xhttp.send(JSON.stringify({
             "name": taskName
         }));
-
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
