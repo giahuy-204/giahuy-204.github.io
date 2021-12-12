@@ -31,7 +31,7 @@ function fetchTaskFunction() {
                 } else {
                     for (let list of objects) {
                         //create random text for td detail test
-                        var tokens = ['Apple', 'Banana', 'The', 'Task'];
+                        var tokens = ['Gone', 'Four', 'Them', 'Task'];
                         var text = '';
                         for (var i = 0; i < 11; i++) {
                             text += tokens[Math.floor(Math.random() * tokens.length)];
