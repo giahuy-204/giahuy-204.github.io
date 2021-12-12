@@ -83,8 +83,6 @@ function fetchTaskFunction() {
                         delete_button.setAttribute("data-target", "#deletedModal");
                         delete_i.className = "fa fa-trash-o";
 
-                        th_id.setAttribute("id", list["id"]);
-
                         th_id.innerHTML = counter + 1;
                         td_name.innerHTML = list["name"];
                         if (list["done_count"] == 0) {
@@ -121,7 +119,7 @@ function fetchTaskFunction() {
                         btn.addEventListener('click', function () {
                             let confirm = document.getElementById('delete_btn');
                             confirm.addEventListener('click', function () {
-                                xhttp.open("DELETE", `${serverUrl}/task_lists/${th_id.id}`);
+                                xhttp.open("DELETE", `${serverUrl}/task_lists/${list["id"]}`);
                                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                                 xhttp.setRequestHeader("Access-Token", jwt);
                                 xhttp.setRequestHeader("Uid", uid);
