@@ -13,3 +13,7 @@ body {
 #logo {
     width:40px;
 }
+
+a {
+    cursor:pointer;
+}

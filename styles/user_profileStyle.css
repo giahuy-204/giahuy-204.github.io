@@ -2,10 +2,11 @@ body {
     font: 14px sans-serif; 
 }
 
-html {
-    overflow-y: scroll;
-}
 
 #logo {
     width:40px;
+}
+
+a {
+    cursor:pointer;
 }

@@ -3,6 +3,9 @@ display: flex;
 flex-wrap: nowrap;
 background-color: DodgerBlue;
 }
+a {
+  cursor:pointer;
+}
 
 .flex-container > div {
 background-color: #f1f1f1;
