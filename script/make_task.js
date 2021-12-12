@@ -7,7 +7,7 @@ if (jwt == null) {
     window.location.href = 'login.html';
 }
 
-let serverUrl = 'http://herokutuan.herokuapp.com';
+let serverUrl = 'https://herokutuan.herokuapp.com';
 
 function fetchTaskFunction() {
     const xhttp = new XMLHttpRequest();
