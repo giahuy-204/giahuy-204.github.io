@@ -1,5 +1,10 @@
 # HmmClueless
 I wonder what is this website
+
+![website img](https://imgur.com/a/A9hyztV)
+*Logo credit: Microsoft 🤣*
+~~Pls don't copystrike me~~
+
 ## How do I access your website? 
 
 Go to your browser and paste this to your bar:
