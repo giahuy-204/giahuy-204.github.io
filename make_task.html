@@ -88,10 +88,6 @@
         </div> -->
         <select id="folder_lists" autofocus onchange="selectFolder()">
             <option value="" disabled selected hidden> -- Choose folder -- </option>
-            <!-- <option> Go to bookstore </option>  
-            <option> Play with cat </option>  
-            <option> tutorialspoint </option>  
-            <option> geeksforgeeks </option>   -->
         </select>
     </div>
 
@@ -197,6 +193,12 @@
                                                 id="addTask_name">
                                         </div>
                                         <div class="form-group">
+                                            <label for="folder">Choose folder for task: </label>
+                                            <select id="addtaskfolders_lists">
+                                                <option value="" disabled selected hidden> -- Choose folder -- </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="name">Task deadline:</label>
                                             <div class="input-group date" data-provide="datepicker">
                                                 <input type="text" class="form-control">
@@ -213,7 +215,8 @@
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">Add
+                                    <button type="button" class="btn btn-success" id="btn_addfoldertask"
+                                        onclick="addTask()">Add
                                         task</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
@@ -419,12 +422,8 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="name">Choose folder to delete </label>
-                                            <select id="deletefolder_lists" onchange="deleteFolder()">
+                                            <select id="deletefolder_lists">
                                                 <option value="" disabled selected hidden> -- Choose folder -- </option>
-                                                <!-- <option> Go to bookstore </option>  
-                                                <option> Play with cat </option>  
-                                                <option> tutorialspoint </option>  
-                                                <option> geeksforgeeks </option>   -->
                                             </select>
                                         </div>
                                     </form>
@@ -432,7 +431,7 @@
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"
-                                        id="btn_deletefolder" id="delete_btn">Confirm</button>
+                                        onclick="deleteFolder()" id="btn_deletefolder" id="delete_btn">Confirm</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>

@@ -1,9 +1,10 @@
 var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
-var counter = 0;
-var id_counter = 0;
-var deletefolder_lists = document.getElementById("deletefolder_lists")
+let counter = 0;
+let id_counter = 0;
+const deletefolder_lists = document.getElementById("deletefolder_lists")
+const addtaskfolders_lists = document.getElementById("addtaskfolders_lists")
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
@@ -21,7 +22,7 @@ let serverUrl = 'https://herokutuan.herokuapp.com';
 // }
 
 function loadingFolders() {
-    var folder_lists = document.getElementById("folder_lists");
+    const folder_lists = document.getElementById("folder_lists");
 
     document.getElementById("table").style.display = "none";
     document.getElementById("share").style.display = "none";
@@ -49,8 +50,13 @@ function loadingFolders() {
                 delete_options.innerHTML = list["name"];
                 delete_options.value = list["id"];
 
+                addtask_options = document.createElement("option");
+                addtask_options.innerHTML = list["name"];
+                addtask_options.value = list["id"];
+
                 folder_lists.appendChild(options);
                 deletefolder_lists.appendChild(delete_options);
+                addtaskfolders_lists.appendChild(addtask_options);
             }
         }
     };
@@ -90,9 +96,9 @@ function fetchTask() {
                         //create random text for td detail test
                         const task_lists = document.getElementById("task_lists");
 
-                        var tokens = ['Gone', 'Four', 'Them', 'Task'];
-                        var text = '';
-                        for (var i = 0; i < 11; i++) {
+                        const tokens = ['Gone', 'Four', 'Them', 'Task'];
+                        let text = '';
+                        for (let i = 0; i < 11; i++) {
                             text += tokens[Math.floor(Math.random() * tokens.length)];
                         }
 
@@ -204,7 +210,7 @@ function fetchTask() {
 }
 
 function search() {
-    var input, filter, table, tr, td, i, txtValue;
+    let input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("searchInput");
     filter = input.value.toUpperCase();
     table = document.getElementById("table");
@@ -223,7 +229,7 @@ function search() {
 }
 
 function addFolder() {
-    var folderName = document.getElementById('addFolder_name').value;
+    let folderName = document.getElementById('addFolder_name').value;
     if (folderName == "") {
         Swal.fire({
             text: 'Please give your folder a name!',
@@ -268,9 +274,7 @@ function addFolder() {
 function deleteFolder() {
     let selected = deletefolder_lists.value;
     let text = deletefolder_lists.options[deletefolder_lists.selectedIndex].text;
-    const btn_delete = document.getElementById("btn_deletefolder");
-
-    btn_delete.addEventListener('click', function () {
+    if (selected) {
         Swal.fire({
             title: 'Are you sure?',
             html: "You are about to delete <span class = 'thick'>" + text + "</span> folder! <p class = thick> Action can't be revert after</p>",
@@ -282,7 +286,7 @@ function deleteFolder() {
         }).then((result) => {
             if (result.isConfirmed) {
                 const xhttp = new XMLHttpRequest();
-
+    
                 xhttp.open("DELETE", `${serverUrl}/task_lists/${selected}`);
                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhttp.setRequestHeader("Access-Token", jwt);
@@ -298,8 +302,58 @@ function deleteFolder() {
                         location.reload();
                     }
                 })
-
             }
         })
-    })
+    } else {
+        Swal.fire({
+            text: 'Please choose folder `(*>﹏<*)′',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    }
+}
+
+function addTask() {
+    const task_name = document.getElementById("addTask_name").value;
+    let folder_value = addtaskfolders_lists.value;
+    if (task_name == "") {
+        Swal.fire({
+            text: 'Oopsie hold on task name is empty 😂',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    } else {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", `${serverUrl}/task_lists/${folder_value}/todos`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader("Access-Token", jwt);
+        xhttp.setRequestHeader("Uid", uid);
+        xhttp.setRequestHeader("Client", client);
+        xhttp.send(JSON.stringify({
+            "name": task_name
+        }));
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 201) {
+                    Swal.fire({
+                        html: "<span class = 'thick'>" + task_name + "</span> task added! Reload webpage to make it appears or click outside to continue your work.",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        text: 'Please choose folder `(*>﹏<*)′',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        }
+    };
 }
