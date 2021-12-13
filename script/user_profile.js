@@ -67,7 +67,6 @@ function getUser() {
     }
   };
 }
-getUser();
 
 function logOut(e) {
   e.preventDefault();

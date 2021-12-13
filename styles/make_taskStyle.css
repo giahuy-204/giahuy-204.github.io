@@ -18,6 +18,10 @@ a {
     cursor: pointer;
 }
 
-label.thick {
+.thick {
     font-weight: bold;
+}
+
+span.thick {
+    font-style: italic;
 }

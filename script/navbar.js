@@ -22,15 +22,15 @@ function logOut(e) {
         confirmButtonText: 'Yes!'
     }).then((result) => {
         if (result.isConfirmed) {
+            localStorage.removeItem("jwt");
+            localStorage.removeItem("uid");
+            localStorage.removeItem("client");
             Swal.fire({
                 text: 'Logged out!',
                 icon: 'success',
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    localStorage.removeItem("jwt");
-                    localStorage.removeItem("uid");
-                    localStorage.removeItem("client");
                     window.location.href = 'index.html'
                 }
             })

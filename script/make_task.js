@@ -1,8 +1,9 @@
 var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
-
 var counter = 0;
+var id_counter = 0;
+var deletefolder_lists = document.getElementById("deletefolder_lists")
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
@@ -11,9 +12,65 @@ if (jwt == null) {
 
 let serverUrl = 'https://herokutuan.herokuapp.com';
 
-function fetchTaskFunction() {
+// document.getElementById('folder_lists').onchange = function () {
+//     localStorage.setItem('selectedtem', document.getElementById('folder_lists').value);
+// };
+
+// if (localStorage.getItem('selectedtem')) {
+//     document.getElementById('folder_lists').options[localStorage.getItem('selectedtem')].selected = true;
+// }
+
+function loadingFolders() {
+    var folder_lists = document.getElementById("folder_lists");
+
+    document.getElementById("table").style.display = "none";
+    document.getElementById("share").style.display = "none";
+    document.getElementById("btn_addtask").style.display = "none";
+    document.getElementById("notify").innerHTML = "Select a folder to begin with. <br>If you don't have a folder, make one.";
+
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `${serverUrl}/task_lists`);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Access-Token", jwt);
+    xhttp.setRequestHeader("Uid", uid);
+    xhttp.setRequestHeader("Client", client);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            const objects = JSON.parse(this.responseText);
+            for (let list of objects) {
+
+                options = document.createElement("option");
+                options.innerHTML = list["name"];
+                options.value = list["id"];
+
+                delete_options = document.createElement("option");
+                delete_options.innerHTML = list["name"];
+                delete_options.value = list["id"];
+
+                folder_lists.appendChild(options);
+                deletefolder_lists.appendChild(delete_options);
+            }
+        }
+    };
+}
+
+function selectFolder() {
+    document.getElementById("table").style.display = "inline";
+    document.getElementById("share").style.display = "inline";
+    document.getElementById("btn_addtask").style.display = "inline";
+    document.getElementById("notify").innerHTML = "";
+    counter = 0;
+    $("#task_lists").empty();
+    fetchTask();
+}
+
+function fetchTask() {
+    let selected = folder_lists.options[folder_lists.selectedIndex].value;
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `${serverUrl}/task_lists/${selected}/todos`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhttp.setRequestHeader("Access-Token", jwt);
     xhttp.setRequestHeader("Uid", uid);
@@ -31,13 +88,13 @@ function fetchTaskFunction() {
                 } else {
                     for (let list of objects) {
                         //create random text for td detail test
+                        const task_lists = document.getElementById("task_lists");
+
                         var tokens = ['Gone', 'Four', 'Them', 'Task'];
                         var text = '';
                         for (var i = 0; i < 11; i++) {
                             text += tokens[Math.floor(Math.random() * tokens.length)];
                         }
-
-                        const task_lists = document.getElementById("task_lists");
 
                         const tr = document.createElement("tr");
                         const th_id = document.createElement("th");
@@ -59,25 +116,25 @@ function fetchTaskFunction() {
 
                         th_id.scope = "row";
 
-                        edit_button.className = "btn btn-primary";
+                        edit_button.className = "btn btn-primary 1";
                         edit_button.title = "Edit";
                         edit_button.setAttribute("data-toggle", "modal");
                         edit_button.setAttribute("data-target", "#editModal");
                         edit_i.className = "fa fa-pencil-square-o";
 
-                        completed_button.className = "btn btn-success";
+                        completed_button.className = "btn btn-success 1";
                         completed_button.title = "Mark as completed";
                         completed_button.setAttribute("data-toggle", "modal");
                         completed_button.setAttribute("data-target", "#completedModal");
                         completed_i.className = "fa fa-check-square-o";
 
-                        move_button.className = "btn btn-warning";
+                        move_button.className = "btn btn-warning 1";
                         move_button.title = "Move to another folder";
                         move_button.setAttribute("data-toggle", "modal");
                         move_button.setAttribute("data-target", "#moveModal");
                         move_i.className = "fa fa-exchange";
 
-                        delete_button.className = "btn btn-danger";
+                        delete_button.className = "btn btn-danger 1";
                         delete_button.title = "Delete";
                         delete_button.setAttribute("data-toggle", "modal");
                         delete_button.setAttribute("data-target", "#deletedModal");
@@ -85,7 +142,7 @@ function fetchTaskFunction() {
 
                         th_id.innerHTML = counter + 1;
                         td_name.innerHTML = list["name"];
-                        if (list["done_count"] == 0) {
+                        if (list["done"] = "null") {
                             td_status.innerHTML = "Not done";
                         } else {
                             td_status.innerHTML = "Done";
@@ -115,18 +172,20 @@ function fetchTaskFunction() {
                         td_options.appendChild(delete_button);
                         delete_button.appendChild(delete_i);
 
-                        const btn = document.getElementsByClassName("btn btn-danger")[counter];
-                        btn.addEventListener('click', function () {
+                        const btn_delete = document.getElementsByClassName("btn btn-danger 1")[counter];
+                        btn_delete.addEventListener('click', function () {
+                            document.getElementById("delete_label1").innerHTML = 'Are you sure you want to delete <span class = "thick">' + list["name"] + "</span> task?";
+                            document.getElementById("delete_label2").innerHTML = "Action can't be revert!"
                             let confirm = document.getElementById('delete_btn');
                             confirm.addEventListener('click', function () {
-                                xhttp.open("DELETE", `${serverUrl}/task_lists/${list["id"]}`);
+                                xhttp.open("DELETE", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
                                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                                 xhttp.setRequestHeader("Access-Token", jwt);
                                 xhttp.setRequestHeader("Uid", uid);
                                 xhttp.setRequestHeader("Client", client);
                                 xhttp.send();
                                 Swal.fire({
-                                    text: 'Task deleted! Reload webpage',
+                                    text: 'Task deleted! Reload webpage to make it appears or click outside to continue your work.',
                                     icon: 'success',
                                     confirmButtonText: 'OK'
                                 }).then((result) => {
@@ -144,7 +203,7 @@ function fetchTaskFunction() {
     }
 }
 
-function searchFunction() {
+function search() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("searchInput");
     filter = input.value.toUpperCase();
@@ -163,11 +222,11 @@ function searchFunction() {
     }
 }
 
-function addTaskFunction() {
-    var taskName = document.getElementById('addTask_name').value;
-    if (taskName == "") {
+function addFolder() {
+    var folderName = document.getElementById('addFolder_name').value;
+    if (folderName == "") {
         Swal.fire({
-            text: 'Please give your task a name!',
+            text: 'Please give your folder a name!',
             icon: 'error',
             confirmButtonText: 'OK'
         });
@@ -179,14 +238,14 @@ function addTaskFunction() {
         xhttp.setRequestHeader("Uid", uid);
         xhttp.setRequestHeader("Client", client);
         xhttp.send(JSON.stringify({
-            "name": taskName
+            "name": folderName
         }));
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 201) {
                     Swal.fire({
-                        text: 'Successful created task! Reload webpage',
+                        text: 'Successful created folder! Reload webpage to make it appears or click outside to continue your work.',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then((result) => {
@@ -204,4 +263,43 @@ function addTaskFunction() {
             }
         };
     }
+}
+
+function deleteFolder() {
+    let selected = deletefolder_lists.value;
+    let text = deletefolder_lists.options[deletefolder_lists.selectedIndex].text;
+    const btn_delete = document.getElementById("btn_deletefolder");
+
+    btn_delete.addEventListener('click', function () {
+        Swal.fire({
+            title: 'Are you sure?',
+            html: "You are about to delete <span class = 'thick'>" + text + "</span> folder! <p class = thick> Action can't be revert after</p>",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const xhttp = new XMLHttpRequest();
+
+                xhttp.open("DELETE", `${serverUrl}/task_lists/${selected}`);
+                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhttp.setRequestHeader("Access-Token", jwt);
+                xhttp.setRequestHeader("Uid", uid);
+                xhttp.setRequestHeader("Client", client);
+                xhttp.send();
+                Swal.fire({
+                    text: 'Folder deleted! Reload webpage to make it appears or click outside to continue your work.',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                })
+
+            }
+        })
+    })
 }
