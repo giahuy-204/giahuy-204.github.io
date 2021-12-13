@@ -1,7 +1,7 @@
 # HmmClueless
 I wonder what is this website
 
-![website img](https://imgur.com/a/A9hyztV)
+![website img](https://i.imgur.com/nWsBM6U.png)
 *Logo credit: Microsoft 🤣*
 ~~Pls don't copystrike me~~
 
