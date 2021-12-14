@@ -3,6 +3,8 @@ var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 let counter = 0;
 let id_counter = 0;
+
+const folder_lists = document.getElementById("folder_lists");
 const deletefolder_lists = document.getElementById("deletefolder_lists")
 const addtaskfolders_lists = document.getElementById("addtaskfolders_lists")
 
@@ -13,17 +15,7 @@ if (jwt == null) {
 
 let serverUrl = 'https://herokutuan.herokuapp.com';
 
-// document.getElementById('folder_lists').onchange = function () {
-//     localStorage.setItem('selectedtem', document.getElementById('folder_lists').value);
-// };
-
-// if (localStorage.getItem('selectedtem')) {
-//     document.getElementById('folder_lists').options[localStorage.getItem('selectedtem')].selected = true;
-// }
-
 function loadingFolders() {
-    const folder_lists = document.getElementById("folder_lists");
-
     document.getElementById("table").style.display = "none";
     document.getElementById("share").style.display = "none";
     document.getElementById("btn_addtask").style.display = "none";
@@ -63,6 +55,7 @@ function loadingFolders() {
 }
 
 function selectFolder() {
+    localStorage.setItem('selectedFolder', document.getElementById('folder_lists').value);
     document.getElementById("table").style.display = "inline";
     document.getElementById("share").style.display = "inline";
     document.getElementById("btn_addtask").style.display = "inline";
@@ -72,9 +65,15 @@ function selectFolder() {
     fetchTask();
 }
 
+function loadingFolderOnReload() {
+    if (localStorage.getItem('selectedFolder')) {
+        folder_lists.value = localStorage.getItem('selectedFolder');
+        selectFolder();
+    }
+}
+
 function fetchTask() {
     let selected = folder_lists.options[folder_lists.selectedIndex].value;
-
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `${serverUrl}/task_lists/${selected}/todos`);
     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -148,13 +147,16 @@ function fetchTask() {
 
                         th_id.innerHTML = counter + 1;
                         td_name.innerHTML = list["name"];
-                        if (list["done"] = "null") {
+                        if (list["done"] == null) {
                             td_status.innerHTML = "Not done";
                         } else {
                             td_status.innerHTML = "Done";
+                            edit_button.style.display = "none";
+                            move_button.style.display = "none";
+                            completed_button.style.display = "none";
                         }
 
-                        td_deadline.innerHTML = "dd/mm/yyyy";
+                        td_deadline.innerHTML = "dd/mm/yy";
                         td_details.innerHTML = text;
 
                         //create table
@@ -182,7 +184,7 @@ function fetchTask() {
                         btn_delete.addEventListener('click', function () {
                             document.getElementById("delete_label1").innerHTML = 'Are you sure you want to delete <span class = "thick">' + list["name"] + "</span> task?";
                             document.getElementById("delete_label2").innerHTML = "Action can't be revert!"
-                            let confirm = document.getElementById('delete_btn');
+                            const confirm = document.getElementById('delete_btn task');
                             confirm.addEventListener('click', function () {
                                 xhttp.open("DELETE", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
                                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -190,17 +192,80 @@ function fetchTask() {
                                 xhttp.setRequestHeader("Uid", uid);
                                 xhttp.setRequestHeader("Client", client);
                                 xhttp.send();
+                                selectFolder();
                                 Swal.fire({
-                                    text: 'Task deleted! Reload webpage to make it appears or click outside to continue your work.',
+                                    text: 'Task deleted!',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                })
+                            });
+                        });
+
+                        const btn_edit = document.getElementsByClassName("btn btn-primary 1")[counter];
+                        btn_edit.addEventListener('click', function () {
+                            document.getElementById("edittask_name").value = list["name"];
+                            let old_name = document.getElementById("edittask_name").value;
+                            const confirm = document.getElementById('edit_btn');
+                            confirm.addEventListener('click', function () {
+                                let name = document.getElementById("edittask_name").value;
+                                if (name == "") {
+                                    Swal.fire({
+                                        text: 'Oopsie hold on task name is empty 😂',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                } else if (name == old_name) {
+                                    Swal.fire({
+                                        text: 'Please change your task name `(*>﹏<*)′',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                } else {
+                                    xhttp.open("PUT", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
+                                    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                    xhttp.setRequestHeader("Access-Token", jwt);
+                                    xhttp.setRequestHeader("Uid", uid);
+                                    xhttp.setRequestHeader("Client", client);
+                                    xhttp.send(JSON.stringify({
+                                        "name": name
+                                    }));
+                                    Swal.fire({
+                                        html: "Task name edited to <span class = 'thick'>" + name + " </span>! Reload webpage to make it appears or click outside to continue your work",
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            })
+                        })
+
+                        const btn_completed = document.getElementsByClassName("btn btn-success 1")[counter];
+                        btn_completed.addEventListener('click', function () {
+                            document.getElementById("completedtask_label").innerHTML = "Are you sure you want to mark <span class = 'thick'>" + list["name"] + "</span> task as done?"
+                            const confirm = document.getElementById('completed_btn');
+                            confirm.addEventListener('click', function () {
+                                xhttp.open("PUT", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
+                                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                xhttp.setRequestHeader("Access-Token", jwt);
+                                xhttp.setRequestHeader("Uid", uid);
+                                xhttp.setRequestHeader("Client", client);
+                                xhttp.send(JSON.stringify({
+                                    "done": true
+                                }));
+                                Swal.fire({
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task marked as completed! Reload webpage to make it appears or click outside to continue your work",
                                     icon: 'success',
                                     confirmButtonText: 'OK'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
                                         location.reload();
                                     }
-                                })
-                            });
-                        });
+                                });
+                            })
+                        })
                         counter++;
                     }
                 }
@@ -251,7 +316,7 @@ function addFolder() {
             if (this.readyState == 4) {
                 if (this.status == 201) {
                     Swal.fire({
-                        text: 'Successful created folder! Reload webpage to make it appears or click outside to continue your work.',
+                        html: "<span class = 'thick'>" + folderName + "</span> folder created! Reload webpage to make it appears or click outside to continue your work.",
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then((result) => {
@@ -286,7 +351,7 @@ function deleteFolder() {
         }).then((result) => {
             if (result.isConfirmed) {
                 const xhttp = new XMLHttpRequest();
-    
+
                 xhttp.open("DELETE", `${serverUrl}/task_lists/${selected}`);
                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhttp.setRequestHeader("Access-Token", jwt);
@@ -294,7 +359,7 @@ function deleteFolder() {
                 xhttp.setRequestHeader("Client", client);
                 xhttp.send();
                 Swal.fire({
-                    text: 'Folder deleted! Reload webpage to make it appears or click outside to continue your work.',
+                    html: "<span class = 'thick'>" + text + "</span> folder deleted! Reload webpage to make it appears or click outside to continue your work.",
                     icon: 'success',
                     confirmButtonText: 'OK'
                 }).then((result) => {
@@ -310,6 +375,12 @@ function deleteFolder() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+    }
+}
+
+function loadFolderAddTask() {
+    if (localStorage.getItem('selectedFolder')) {
+        addtaskfolders_lists.value = localStorage.getItem('selectedFolder');
     }
 }
 
@@ -338,14 +409,11 @@ function addTask() {
             if (this.readyState == 4) {
                 if (this.status == 201) {
                     Swal.fire({
-                        html: "<span class = 'thick'>" + task_name + "</span> task added! Reload webpage to make it appears or click outside to continue your work.",
+                        html: "<span class = 'thick'>" + task_name + "</span> task added!",
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
                     })
+                    selectFolder();
                 } else {
                     Swal.fire({
                         text: 'Please choose folder `(*>﹏<*)′',
@@ -357,3 +425,5 @@ function addTask() {
         }
     };
 }
+
+setTimeout(loadingFolderOnReload, 2500);

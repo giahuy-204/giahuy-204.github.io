@@ -166,11 +166,13 @@
                                 data-target="#addFolderModal">Add
                                 new folder</button>
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"
-                                id="btn_addtask">Add
+                                id="btn_addtask" onclick="loadFolderAddTask()">Add
                                 new task</button>
                             <button type="button" class="btn btn-info" data-toggle="modal" id="share"
                                 data-target="#shareModal">Share</button>
                             <br>
+                            <button type="button" class="btn btn-warning" data-toggle="modal"
+                                data-target="#deletedFolderModal">Update folder</button>
                             <button type="button" class="btn btn-danger" data-toggle="modal"
                                 data-target="#deletedFolderModal">Delete folder</button>
                         </div>
@@ -237,7 +239,8 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="name">Task name:</label>
-                                            <input type="text" class="form-control" placeholder="Task name" id="name">
+                                            <input type="text" class="form-control edit task" placeholder="Task name"
+                                                id="edittask_name">
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Task deadline:</label>
@@ -256,7 +259,8 @@
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Edit
+                                    <button type="button" class="btn btn-success edit" data-dismiss="modal"
+                                        id="edit_btn">Edit
                                         task</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
@@ -343,13 +347,14 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="form-group">
-                                            <label for="name">Are you sure you want to mark this task as done? </label>
+                                            <label for="name" id = "completedtask_label"></label>
                                         </div>
                                     </form>
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"
+                                        id="completed_btn">Confirm</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
@@ -376,7 +381,7 @@
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"
-                                        id="delete_btn">Confirm</button>
+                                        id="delete_btn task">Confirm</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
@@ -396,7 +401,8 @@
                                     <form>
                                         <div class="form-group">
                                             <label for="name">Input username to share:</label>
-                                            <input type="text" class="form-control" placeholder="Username" id="name">
+                                            <input type="text" class="form-control" placeholder="Username"
+                                                id="share_name">
                                         </div>
                                     </form>
                                 </div>
