@@ -221,7 +221,7 @@ function fetchTask() {
                                         confirmButtonText: 'OK'
                                     });
                                 } else {
-                                    xhttp.open("PUT", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
+                                    xhttp.open("PATCH", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
                                     xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                                     xhttp.setRequestHeader("Access-Token", jwt);
                                     xhttp.setRequestHeader("Uid", uid);
@@ -247,7 +247,7 @@ function fetchTask() {
                             document.getElementById("completedtask_label").innerHTML = "Are you sure you want to mark <span class = 'thick'>" + list["name"] + "</span> task as done?"
                             const confirm = document.getElementById('completed_btn');
                             confirm.addEventListener('click', function () {
-                                xhttp.open("PUT", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
+                                xhttp.open("PATCH", `${serverUrl}/task_lists/${selected}/todos/${list["id"]}`);
                                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                                 xhttp.setRequestHeader("Access-Token", jwt);
                                 xhttp.setRequestHeader("Uid", uid);
