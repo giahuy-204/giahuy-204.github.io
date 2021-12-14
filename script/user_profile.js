@@ -2,6 +2,7 @@ var jwt = localStorage.getItem("jwt");
 var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 
+var task_counter = 0;
 var available_counter = 0;
 var completed_counter = 0;
 var notdone_counter = 0;
@@ -54,13 +55,13 @@ function getUser() {
         const objects = JSON.parse(this.responseText);
         for (let list of objects) {
           available_counter++;
-          if (list["done_count"] == 0) {
-            notdone_counter++;
-          } else {
-            completed_counter++;
-          }
+          task_counter += list["todo_count"];
+          completed_counter += list["done_count"];
         }
+        notdone_counter = task_counter - completed_counter;
+
         document.getElementById("available").innerHTML = available_counter;
+        document.getElementById("task_available").innerHTML = task_counter;
         document.getElementById("completed").innerHTML = completed_counter;
         document.getElementById("notdone").innerHTML = notdone_counter;
       }
