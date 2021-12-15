@@ -16,6 +16,8 @@ if (jwt == null) {
 let serverUrl = 'https://herokutuan.herokuapp.com';
 
 function loadingFolders() {
+    let folder_counter = 0;
+
     document.getElementById("table").style.display = "none";
     document.getElementById("share").style.display = "none";
     document.getElementById("btn_addtask").style.display = "none";
@@ -49,6 +51,10 @@ function loadingFolders() {
                 folder_lists.appendChild(options);
                 deletefolder_lists.appendChild(delete_options);
                 addtaskfolders_lists.appendChild(addtask_options);
+                folder_counter++;
+                if (folder_counter == objects.length) {
+                    loadingFolderOnReload();
+                }
             }
         }
     };
@@ -97,7 +103,7 @@ function fetchTask() {
 
                         const tokens = ['Gone', 'Four', 'Them', 'Task'];
                         let text = '';
-                        for (let i = 0; i < 11; i++) {
+                        for (let i = 0; i < Math.floor(Math.random() * 15) + 5; i++) {
                             text += tokens[Math.floor(Math.random() * tokens.length)];
                         }
 
@@ -158,6 +164,7 @@ function fetchTask() {
 
                         td_deadline.innerHTML = "dd/mm/yy";
                         td_details.innerHTML = text;
+                        td_options.style.display = "table-cell";
 
                         //create table
                         task_lists.appendChild(tr);
@@ -425,5 +432,3 @@ function addTask() {
         }
     };
 }
-
-setTimeout(loadingFolderOnReload, 2500);
