@@ -7,13 +7,14 @@ let id_counter = 0;
 const folder_lists = document.getElementById("folder_lists");
 const deletefolder_lists = document.getElementById("deletefolder_lists")
 const addtaskfolders_lists = document.getElementById("addtaskfolders_lists")
+const updatefolder_lists = document.getElementById("updatefolder_lists");
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
     window.location.href = 'login.html';
 }
 
-let serverUrl = 'https://herokutuan.herokuapp.com';
+const serverUrl = 'https://herokutuan.herokuapp.com';
 
 function loadingFolders() {
     let folder_counter = 0;
@@ -48,9 +49,14 @@ function loadingFolders() {
                 addtask_options.innerHTML = list["name"];
                 addtask_options.value = list["id"];
 
+                updatefolder_options = document.createElement("option");
+                updatefolder_options.innerHTML = list["name"];
+                updatefolder_options.value = list["id"];
+
                 folder_lists.appendChild(options);
                 deletefolder_lists.appendChild(delete_options);
                 addtaskfolders_lists.appendChild(addtask_options);
+                updatefolder_lists.appendChild(updatefolder_options);
                 folder_counter++;
                 if (folder_counter == objects.length) {
                     loadingFolderOnReload();
@@ -304,7 +310,7 @@ function addFolder() {
     let folderName = document.getElementById('addFolder_name').value;
     if (folderName == "") {
         Swal.fire({
-            text: 'Please give your folder a name!',
+            text: 'Please give your new folder a name!',
             icon: 'error',
             confirmButtonText: 'OK'
         });
@@ -385,9 +391,14 @@ function deleteFolder() {
     }
 }
 
-function loadFolderAddTask() {
+function loadFolderUpdateDeleteAddTask() {
     if (localStorage.getItem('selectedFolder')) {
         addtaskfolders_lists.value = localStorage.getItem('selectedFolder');
+        updatefolder_lists.value = localStorage.getItem('selectedFolder');
+        deletefolder_lists.value = localStorage.getItem('selectedFolder');
+
+        document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
+        localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
     }
 }
 
@@ -432,3 +443,63 @@ function addTask() {
         }
     };
 }
+
+function loadingOnchangeSelectUpdate() {
+    document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
+    localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
+}
+
+function updateFolder() {
+    let folder_oldname = localStorage.getItem('selectedUpdateFolderText');
+    const folder_name = document.getElementById("updatefolder_name").value;
+    let folder_value = updatefolder_lists.value;
+
+    if (folder_name == "") {
+        Swal.fire({
+            text: 'Oopsie hold on folder name is empty 😂',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    } else if (folder_oldname == folder_name){
+        Swal.fire({
+            html: 'Your inputed name is the same with old folder name <br> `(*>﹏<*)′',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    } else {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("PATCH", `${serverUrl}/task_lists/${folder_value}`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader("Access-Token", jwt);
+        xhttp.setRequestHeader("Uid", uid);
+        xhttp.setRequestHeader("Client", client);
+        xhttp.send(JSON.stringify({
+            "name": folder_name
+        }));
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    Swal.fire({
+                        html: "<span class = 'thick'>" + folder_oldname + "</span> folder name updated to <span class = 'thick'>" + folder_name + "</span>! <br>Reload webpage to make it appears or click outside to continue your work.",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        text: 'Hmm clueless maybe our api hav some trouble idk random change happens ig',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        }
+    };
+}
+
+//Rip 500 lines of script
