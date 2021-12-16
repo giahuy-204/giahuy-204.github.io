@@ -25,6 +25,8 @@ function logOut(e) {
             localStorage.removeItem("jwt");
             localStorage.removeItem("uid");
             localStorage.removeItem("client");
+            localStorage.removeItem("selectedFolder");
+            localStorage.removeItem("selectedUpdateFolderText");
             Swal.fire({
                 text: 'Logged out!',
                 icon: 'success',

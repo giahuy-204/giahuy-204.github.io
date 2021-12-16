@@ -193,6 +193,7 @@ function fetchTask() {
                         td_options.appendChild(delete_button);
                         delete_button.appendChild(delete_i);
 
+                        //event for each button in each row
                         const btn_delete = document.getElementsByClassName("btn btn-danger 1")[counter];
                         btn_delete.addEventListener('click', function () {
                             document.getElementById("delete_label1").innerHTML = 'Are you sure you want to delete <span class = "thick">' + list["name"] + "</span> task?";
@@ -205,12 +206,15 @@ function fetchTask() {
                                 xhttp.setRequestHeader("Uid", uid);
                                 xhttp.setRequestHeader("Client", client);
                                 xhttp.send();
-                                selectFolder();
                                 Swal.fire({
-                                    text: 'Task deleted!',
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task deleted! Reload webpage to make it appears or click outside to continue your work",
                                     icon: 'success',
                                     confirmButtonText: 'OK'
-                                })
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
                             });
                         });
 
