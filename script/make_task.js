@@ -162,7 +162,7 @@ function fetchTask() {
                         if (list["done"] == null) {
                             td_status.innerHTML = "Not done";
                         } else {
-                            td_status.innerHTML = "Done";
+                            td_status.innerHTML = "Completed";
                             edit_button.style.display = "none";
                             move_button.style.display = "none";
                             completed_button.style.display = "none";
@@ -506,4 +506,22 @@ function updateFolder() {
     };
 }
 
-//Rip 500 lines of script
+function filterStatus() {
+    const filter = document.getElementById("filter_select");
+    console.log(filter.value);
+    const table = document.getElementById("table");
+    rows = table.getElementsByTagName('tr');
+
+    for (i = 1, j = rows.length; i < j; ++i) {
+        cells = rows[i].getElementsByTagName('td');
+        if (filter.value != "all") {
+            if (cells[1].innerHTML != filter.value) {
+                rows[i].style.display = "none";
+            } else {
+                rows[i].style.display = "table-row";
+            }
+        } else {
+            rows[i].style.display = "table-row";
+        }   
+    }
+}

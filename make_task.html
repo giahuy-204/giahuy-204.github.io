@@ -97,10 +97,10 @@
         <div class="row m-1 p-3 px-5 justify-content-end">
             <div class="col-auto d-flex align-items-center">
                 <label class="text-secondary my-2 pr-2 view-opt-label">Filter</label>
-                <select class="custom-select custom-select-sm btn my-2" onchange="location = this.value;">
-                    <option value="make_task.html" selected>All</option>
-                    <option value="task_done.html">Completed</option>
-                    <option value="active">Not done</option>
+                <select class="custom-select custom-select-sm btn my-2" id = "filter_select" onchange="filterStatus()">
+                    <option value="all" selected>All</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Not done">Not done</option>
                     <option value="has-due-date">Has due date</option>
                 </select>
             </div>
