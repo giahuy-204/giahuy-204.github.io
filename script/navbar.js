@@ -28,6 +28,7 @@ function logOut(e) {
             localStorage.removeItem("client");
             localStorage.removeItem("selectedFolder");
             localStorage.removeItem("selectedUpdateFolderText");
+            localStorage.removeItem("password");
             Swal.fire({
                 text: 'Logged out!',
                 icon: 'success',

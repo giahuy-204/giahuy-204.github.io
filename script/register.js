@@ -32,12 +32,13 @@ function registerFunction() {
                         }
                     });
                 } else {
-                    // var formattedString = objects["errors"]["full_messages"]; 
-                    // var brk = formattedString.split(',');
-                    // var res = brk.join(" <br> ");           
-                    // console.log(res);
+                    const array = objects["errors"]["full_messages"]; 
+                    let formattedSring = "";
+                    for (i = 0; i < array.length; i++) {
+                        formattedSring += array[i] + "." + "<br>";
+                    }
                     Swal.fire({
-                        text: objects["errors"]["full_messages"],
+                        html: formattedSring,
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });

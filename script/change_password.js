@@ -12,17 +12,9 @@ function passwordFunction() {
     const password = document.getElementById("password").value;
     const confirm_password = document.getElementById("confirm_password").value;
     
-    let isnum = /^\d+$/.test(password);
     if (current_password != old_password) {
         Swal.fire({
             text: 'Change password failed! Your old password is not matching your current password.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (isnum == true) {
-        Swal.fire({
-            text: 'Change password failed! Your new password must contain at least 1 character.',
             icon: 'error',
             confirmButtonText: 'OK'
         });
@@ -54,8 +46,13 @@ function passwordFunction() {
                         }
                     });
                 } else {
+                    const array = objects["errors"]["full_messages"]; 
+                    let formattedSring = "";
+                    for (i = 0; i < array.length; i++) {
+                        formattedSring += array[i] + "." + "<br>";
+                    }
                     Swal.fire({
-                        text: objects["errors"]["full_messages"],
+                        html: formattedSring,
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });
