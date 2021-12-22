@@ -15,7 +15,7 @@ function logOut(e) {
     e.preventDefault();
     Swal.fire({
         title: 'Are you sure?',
-        text: "You need to login again if you want to access this page!",
+        text: "You might need to login again if you want to access some page!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

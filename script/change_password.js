@@ -7,29 +7,15 @@ if (jwt == null) {
 }
 
 function passwordFunction() {
+    const current_password = localStorage.getItem("password");
     const old_password = document.getElementById("old_password").value;
     const password = document.getElementById("password").value;
     const confirm_password = document.getElementById("confirm_password").value;
-
+    
     let isnum = /^\d+$/.test(password);
-
-    if (old_password == "") {
+    if (current_password != old_password) {
         Swal.fire({
-            text: 'Change password failed! Your old password is null.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (password == "") {
-        Swal.fire({
-            text: 'Change password failed! Your new password is null.',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (password != confirm_password) {
-        Swal.fire({
-            text: 'Change password failed! Your confirm password is not matching your new password.',
+            text: 'Change password failed! Your old password is not matching your current password.',
             icon: 'error',
             confirmButtonText: 'OK'
         });
@@ -55,9 +41,11 @@ function passwordFunction() {
 
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
+                const objects = JSON.parse(this.responseText);
                 if (this.status == 200) {
+                    localStorage.setItem('password', password);
                     Swal.fire({
-                        text: 'Change password successful.',
+                        text: objects["message"],
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then((result) => {
@@ -67,7 +55,7 @@ function passwordFunction() {
                     });
                 } else {
                     Swal.fire({
-                        text: 'Change password failed! Your old password is not matching your current password',
+                        text: objects["errors"]["full_messages"],
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });

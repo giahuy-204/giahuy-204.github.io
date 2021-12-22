@@ -3,32 +3,9 @@ function registerFunction() {
     const password = document.getElementById("password").value;
     const c_password = document.getElementById("confirm_password").value;
 
-    let isnum = /^\d+$/.test(password);
-
-    if (email == "") {
+    if (password != c_password) {
         Swal.fire({
-            text: 'Register failed! Your email is null',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (password == "") {
-        Swal.fire({
-            text: 'Register failed! Your password is null',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (password != c_password) {
-        Swal.fire({
-            text: 'Register failed! Your confirm password is not matching your current password',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-        return false;
-    } else if (isnum == true) {
-        Swal.fire({
-            text: 'Register failed! Your password must contain at least 1 character.',
+            text: "Your password is not matching with confirm password",
             icon: 'error',
             confirmButtonText: 'OK'
         });
@@ -41,9 +18,9 @@ function registerFunction() {
             "email": email,
             "password": password
         }));
-
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
+                const objects = JSON.parse(this.responseText);
                 if (this.status == 200) {
                     Swal.fire({
                         text: 'Register successful',
@@ -55,8 +32,12 @@ function registerFunction() {
                         }
                     });
                 } else {
+                    // var formattedString = objects["errors"]["full_messages"]; 
+                    // var brk = formattedString.split(',');
+                    // var res = brk.join(" <br> ");           
+                    // console.log(res);
                     Swal.fire({
-                        text: 'Register failed! Your email existed',
+                        text: objects["errors"]["full_messages"],
                         icon: 'error',
                         confirmButtonText: 'OK'
                     });
@@ -66,3 +47,4 @@ function registerFunction() {
         return false;
     }
 }
+

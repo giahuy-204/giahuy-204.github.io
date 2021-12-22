@@ -40,6 +40,7 @@ function loginFunction() {
         localStorage.setItem('jwt', jwt);
         localStorage.setItem('uid', uid);
         localStorage.setItem('client', client);
+        localStorage.setItem('password', password);
         if (this.status == 200) {
           Swal.fire({
             text: 'Login successful',
