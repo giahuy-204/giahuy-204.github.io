@@ -508,7 +508,6 @@ function updateFolder() {
 
 function filterStatus() {
     const filter = document.getElementById("filter_select");
-    console.log(filter.value);
     const table = document.getElementById("table");
     rows = table.getElementsByTagName('tr');
 
