@@ -6,6 +6,7 @@ if (jwt != null) {
     document.getElementById("login").style.display = "none";
     document.getElementById("register").style.display = "none";
 } else {
+    document.getElementById("change_password").style.display = "none";
     document.getElementById("profile").style.display = "none";
     document.getElementById("logout").style.display = "none";
 }

@@ -7,8 +7,8 @@ if (jwt != null) {
 }
 
 function loginFunction() {
-  var email = document.getElementById("username").value;
-  var password = document.getElementById("password").value;
+  const email = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
   if (email == "") {
     Swal.fire({

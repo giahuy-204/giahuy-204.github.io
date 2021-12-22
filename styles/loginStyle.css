@@ -28,3 +28,7 @@ label {
 a {
     cursor: pointer;
 }
+
+.thick {
+    font-weight: bold;
+}
