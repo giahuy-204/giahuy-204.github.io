@@ -26,7 +26,7 @@ function loginFunction() {
     return false;
   } else {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://herokutuan.herokuapp.com/auth/sign_in");
+    xhttp.open("POST", "https://tasklist-minh.herokuapp.com/auth/sign_in");
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify({
       "email": email,

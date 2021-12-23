@@ -21,7 +21,7 @@ function passwordFunction() {
         return false;
     } else {
         const xhttp = new XMLHttpRequest();
-        xhttp.open("PATCH", "https://herokutuan.herokuapp.com/auth/password");
+        xhttp.open("PATCH", "https://tasklist-minh.herokuapp.com/auth/password");
         xhttp.setRequestHeader("Content-Type", "application/json");
         xhttp.setRequestHeader("Access-Token", jwt);
         xhttp.setRequestHeader("Uid", uid);

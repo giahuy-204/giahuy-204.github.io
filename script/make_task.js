@@ -14,7 +14,7 @@ if (jwt == null) {
     window.location.href = 'login.html';
 }
 
-const serverUrl = 'https://herokutuan.herokuapp.com';
+const serverUrl = 'https://tasklist-minh.herokuapp.com/';
 
 function loadingFolders() {
     let folder_counter = 0;
@@ -107,11 +107,11 @@ function fetchTask() {
                         //create random text for td detail test
                         const task_lists = document.getElementById("task_lists");
 
-                        const tokens = ['Gone', 'Four', 'Them', 'Task'];
-                        let text = '';
-                        for (let i = 0; i < Math.floor(Math.random() * 15) + 5; i++) {
-                            text += tokens[Math.floor(Math.random() * tokens.length)];
-                        }
+                        // const tokens = ['Gone', 'Four', 'Them', 'Task'];
+                        // let text = '';
+                        // for (let i = 0; i < Math.floor(Math.random() * 15) + 5; i++) {
+                        //     text += tokens[Math.floor(Math.random() * tokens.length)];
+                        // }
 
                         const tr = document.createElement("tr");
                         const th_id = document.createElement("th");
@@ -169,7 +169,11 @@ function fetchTask() {
                         }
 
                         td_deadline.innerHTML = "dd/mm/yy";
-                        td_details.innerHTML = text;
+                        if (!list["description"].trim()) {
+                            td_details.innerHTML = "No detail has been received.";
+                        } else {
+                            td_details.innerHTML = list["description"];
+                        }
                         td_options.style.display = "table-cell";
 
                         //create table
@@ -221,19 +225,14 @@ function fetchTask() {
                         const btn_edit = document.getElementsByClassName("btn btn-primary 1")[counter];
                         btn_edit.addEventListener('click', function () {
                             document.getElementById("edittask_name").value = list["name"];
-                            let old_name = document.getElementById("edittask_name").value;
+                            const old_name = document.getElementById("edittask_name").value;
                             const confirm = document.getElementById('edit_btn');
                             confirm.addEventListener('click', function () {
-                                let name = document.getElementById("edittask_name").value;
+                                const name = document.getElementById("edittask_name").value;
+                                const description = document.getElementById("edittask_detail").value;
                                 if (name == "") {
                                     Swal.fire({
                                         text: 'Oopsie hold on task name is empty 😂',
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                } else if (name == old_name) {
-                                    Swal.fire({
-                                        text: 'Please change your task name `(*>﹏<*)′',
                                         icon: 'error',
                                         confirmButtonText: 'OK'
                                     });
@@ -244,10 +243,11 @@ function fetchTask() {
                                     xhttp.setRequestHeader("Uid", uid);
                                     xhttp.setRequestHeader("Client", client);
                                     xhttp.send(JSON.stringify({
-                                        "name": name
+                                        "name": name,
+                                        "description": description
                                     }));
                                     Swal.fire({
-                                        html: "Task name edited to <span class = 'thick'>" + name + " </span>! Reload webpage to make it appears or click outside to continue your work",
+                                        html: "Task <span class = 'thick'>" + old_name + " </span> has been edited! Reload webpage to make it appears or click outside to continue your work",
                                         icon: 'success',
                                         confirmButtonText: 'OK'
                                     }).then((result) => {
@@ -408,6 +408,7 @@ function loadFolderUpdateDeleteAddTask() {
 
 function addTask() {
     const task_name = document.getElementById("addTask_name").value;
+    const task_description = document.getElementById("addTask_detail").value;
     let folder_value = addtaskfolders_lists.value;
     if (task_name == "") {
         Swal.fire({
@@ -424,7 +425,8 @@ function addTask() {
         xhttp.setRequestHeader("Uid", uid);
         xhttp.setRequestHeader("Client", client);
         xhttp.send(JSON.stringify({
-            "name": task_name
+            "name": task_name,
+            "description": task_description
         }));
 
         xhttp.onreadystatechange = function () {

@@ -20,7 +20,7 @@ function getUser() {
   const xhttp = new XMLHttpRequest();
   const xhttp_counter = new XMLHttpRequest();
 
-  xhttp.open("GET", "https://herokutuan.herokuapp.com/profile");
+  xhttp.open("GET", "https://tasklist-minh.herokuapp.com/profile");
   xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp.setRequestHeader("Access-Token", jwt);
   xhttp.setRequestHeader("Uid", uid);
@@ -43,7 +43,7 @@ function getUser() {
     }
   };
 
-  xhttp_counter.open("GET", "https://herokutuan.herokuapp.com/task_lists");
+  xhttp_counter.open("GET", "https://tasklist-minh.herokuapp.com/task_lists");
   xhttp_counter.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   xhttp_counter.setRequestHeader("Access-Token", jwt);
   xhttp_counter.setRequestHeader("Uid", uid);
