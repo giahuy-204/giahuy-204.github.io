@@ -3,7 +3,7 @@ var uid = null;
 var client = null;
 
 if (jwt != null) {
-  window.location.href = 'make_task.html';
+  window.location.href = 'make_task';
 }
 
 function loginFunction() {
@@ -48,7 +48,7 @@ function loginFunction() {
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'user_profile.html';
+              window.location.href = 'user_profile';
             }
           });
         } else {

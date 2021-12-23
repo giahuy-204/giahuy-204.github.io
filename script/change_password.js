@@ -3,7 +3,7 @@ var uid = localStorage.getItem("uid");
 var client = localStorage.getItem("client");
 
 if (jwt == null) {
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 
 function passwordFunction() {

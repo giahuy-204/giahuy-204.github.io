@@ -35,7 +35,7 @@ function logOut(e) {
                 confirmButtonText: 'OK'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = 'index.html'
+                    window.location.href = 'index'
                 }
             })
 

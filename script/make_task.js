@@ -11,7 +11,7 @@ const updatefolder_lists = document.getElementById("updatefolder_lists");
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
-    window.location.href = 'login.html';
+    window.location.href = 'login';
 }
 
 const serverUrl = 'https://tasklist-minh.herokuapp.com/';

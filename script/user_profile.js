@@ -9,7 +9,7 @@ var notdone_counter = 0;
 
 if (jwt == null) {
   alert('You need to login before using this page');
-  window.location.href = 'login.html';
+  window.location.href = 'login';
 }
 
 console.log(jwt);
@@ -35,7 +35,7 @@ function getUser() {
         document.getElementById("updated").innerHTML = objects["updated_at"];
       } else {
         alert('You need to login before using this page!')
-        window.location.href = 'login.html'
+        window.location.href = 'login'
         localStorage.removeItem("jwt");
         localStorage.removeItem("uid");
         localStorage.removeItem("client");
@@ -84,7 +84,7 @@ function logOut(e) {
       localStorage.removeItem("jwt");
       localStorage.removeItem("uid");
       localStorage.removeItem("client");
-      window.location.href = 'login.html'
+      window.location.href = 'login'
     }
   })
 }
