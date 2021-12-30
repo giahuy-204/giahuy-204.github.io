@@ -25,6 +25,8 @@ function registerFunction() {
                     Swal.fire({
                         text: 'Register successful',
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -32,7 +34,7 @@ function registerFunction() {
                         }
                     });
                 } else {
-                    const array = objects["errors"]["full_messages"]; 
+                    const array = objects["errors"]["full_messages"];
                     let formattedSring = "";
                     for (i = 0; i < array.length; i++) {
                         formattedSring += array[i] + "." + "<br>";

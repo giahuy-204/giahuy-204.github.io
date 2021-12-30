@@ -131,19 +131,18 @@
         <br>
         <h4 id="notify" style="text-align: center;">
             </h2>
-            <!-- Todo list section -->
+            <!-- Task list section -->
             <br>
             <div class="row mx-1 px-5 pb-3 w-80">
                 <div class="col mx-auto">
                     <table class="table table-bordered table-responsive" id="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Task ID</th>
-                                <th scope="col">Task name</th>
-                                <th scope="col">Task status</th>
-                                <th scope="col">Task deadline</th>
-                                <th scope="col">Task details</th>
-                                <th scope="col">Options</th>
+                                <th scope="col" style="width: 90px">Task ID</th>
+                                <th scope="col" style="width: 150px">Task name</th>
+                                <th scope="col" style="width: 150px">Task status</th>
+                                <th scope="col" style="width: 400px">Task details</th>
+                                <th scope="col" style="width: 200px">Options</th>
                             </tr>
                         </thead>
                         <tbody id="task_lists">
@@ -164,7 +163,7 @@
                       </tr> -->
                         </tbody>
                     </table>
-                    <!-- Create todo section -->
+                    <!-- Create task and folder section -->
                     <div class="row m-1 p-3">
                         <div class="col-auto px-0 mx-0 mr-2">
                             <button type="button" class="btn btn-success" data-toggle="modal"
@@ -208,15 +207,6 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Task deadline:</label>
-                                            <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label for="detail">Task details:</label>
                                             <textarea class="form-control" rows="3" id="addTask_detail"></textarea>
                                         </div>
@@ -248,15 +238,6 @@
                                             <label for="name">Task name:</label>
                                             <input type="text" class="form-control edit task" placeholder="Task name"
                                                 id="edittask_name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">Task deadline:</label>
-                                            <div class="input-group date" data-provide="datepicker">
-                                                <input type="text" class="form-control">
-                                                <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-th"></span>
-                                                </div>
-                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="detail">Task details:</label>

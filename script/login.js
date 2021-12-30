@@ -45,6 +45,8 @@ function loginFunction() {
           Swal.fire({
             text: 'Login successful',
             icon: 'success',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {

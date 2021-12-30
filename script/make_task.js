@@ -117,7 +117,6 @@ function fetchTask() {
                         const th_id = document.createElement("th");
                         const td_name = document.createElement("td");
                         const td_status = document.createElement("td");
-                        const td_deadline = document.createElement("td");
                         const td_details = document.createElement("td");
                         const td_options = document.createElement("td");
 
@@ -168,7 +167,6 @@ function fetchTask() {
                             completed_button.style.display = "none";
                         }
 
-                        td_deadline.innerHTML = "dd/mm/yy";
                         if (!list["description"].trim()) {
                             td_details.innerHTML = "No detail has been received.";
                         } else {
@@ -181,7 +179,6 @@ function fetchTask() {
                         tr.appendChild(th_id);
                         tr.appendChild(td_name);
                         tr.appendChild(td_status);
-                        tr.appendChild(td_deadline);
                         tr.appendChild(td_details);
                         tr.appendChild(td_options);
 
@@ -211,8 +208,10 @@ function fetchTask() {
                                 xhttp.setRequestHeader("Client", client);
                                 xhttp.send();
                                 Swal.fire({
-                                    html: "<span class = 'thick'>" + list["name"] + "</span> task deleted! Reload webpage to make it appears or click outside to continue your work",
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task deleted!",
                                     icon: 'success',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
                                     confirmButtonText: 'OK'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
@@ -247,8 +246,10 @@ function fetchTask() {
                                         "description": description
                                     }));
                                     Swal.fire({
-                                        html: "Task <span class = 'thick'>" + old_name + " </span> has been edited! Reload webpage to make it appears or click outside to continue your work",
+                                        html: "Task <span class = 'thick'>" + old_name + " </span> has been edited!",
                                         icon: 'success',
+                                        allowOutsideClick: false,
+                                        allowEscapeKey: false,
                                         confirmButtonText: 'OK'
                                     }).then((result) => {
                                         if (result.isConfirmed) {
@@ -273,8 +274,10 @@ function fetchTask() {
                                     "done": true
                                 }));
                                 Swal.fire({
-                                    html: "<span class = 'thick'>" + list["name"] + "</span> task marked as completed! Reload webpage to make it appears or click outside to continue your work",
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task marked as completed!",
                                     icon: 'success',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
                                     confirmButtonText: 'OK'
                                 }).then((result) => {
                                     if (result.isConfirmed) {
@@ -333,8 +336,10 @@ function addFolder() {
             if (this.readyState == 4) {
                 if (this.status == 201) {
                     Swal.fire({
-                        html: "<span class = 'thick'>" + folderName + "</span> folder created! Reload webpage to make it appears or click outside to continue your work.",
+                        html: "<span class = 'thick'>" + folderName + "</span> folder created!",
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -376,8 +381,10 @@ function deleteFolder() {
                 xhttp.setRequestHeader("Client", client);
                 xhttp.send();
                 Swal.fire({
-                    html: "<span class = 'thick'>" + text + "</span> folder deleted! Reload webpage to make it appears or click outside to continue your work.",
+                    html: "<span class = 'thick'>" + text + "</span> folder deleted!",
                     icon: 'success',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
                     confirmButtonText: 'OK'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -435,9 +442,14 @@ function addTask() {
                     Swal.fire({
                         html: "<span class = 'thick'>" + task_name + "</span> task added!",
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                         confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
                     })
-                    selectFolder();
                 } else {
                     Swal.fire({
                         text: 'Please choose folder `(*>﹏<*)′',
@@ -466,7 +478,7 @@ function updateFolder() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
-    } else if (folder_oldname == folder_name){
+    } else if (folder_oldname == folder_name) {
         Swal.fire({
             html: 'Your inputed name is the same with old folder name <br> `(*>﹏<*)′',
             icon: 'error',
@@ -488,8 +500,10 @@ function updateFolder() {
             if (this.readyState == 4) {
                 if (this.status == 200) {
                     Swal.fire({
-                        html: "<span class = 'thick'>" + folder_oldname + "</span> folder name updated to <span class = 'thick'>" + folder_name + "</span>! <br>Reload webpage to make it appears or click outside to continue your work.",
+                        html: "<span class = 'thick'>" + folder_oldname + "</span> folder name updated to <span class = 'thick'>" + folder_name + "</span>!",
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -523,6 +537,6 @@ function filterStatus() {
             }
         } else {
             rows[i].style.display = "table-row";
-        }   
+        }
     }
 }

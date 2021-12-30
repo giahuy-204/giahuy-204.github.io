@@ -11,7 +11,7 @@ function passwordFunction() {
     const old_password = document.getElementById("old_password").value;
     const password = document.getElementById("password").value;
     const confirm_password = document.getElementById("confirm_password").value;
-    
+
     if (current_password != old_password) {
         Swal.fire({
             text: 'Change password failed! Your old password is not matching your current password.',
@@ -39,6 +39,8 @@ function passwordFunction() {
                     Swal.fire({
                         text: objects["message"],
                         icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
                         confirmButtonText: 'OK'
                     }).then((result) => {
                         if (result.isConfirmed) {
@@ -46,7 +48,7 @@ function passwordFunction() {
                         }
                     });
                 } else {
-                    const array = objects["errors"]["full_messages"]; 
+                    const array = objects["errors"]["full_messages"];
                     let formattedSring = "";
                     for (i = 0; i < array.length; i++) {
                         formattedSring += array[i] + "." + "<br>";

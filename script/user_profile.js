@@ -101,7 +101,7 @@ function updateProfile() {
       icon: 'error',
       confirmButtonText: 'OK'
     })
-  } else if(oldName == newName) {
+  } else if (oldName == newName) {
     Swal.fire({
       text: 'Please change your username',
       icon: 'error',
@@ -114,6 +114,8 @@ function updateProfile() {
           Swal.fire({
             text: 'Updated successful',
             icon: 'success',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
