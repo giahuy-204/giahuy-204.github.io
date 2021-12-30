@@ -7,6 +7,9 @@ var available_counter = 0;
 var completed_counter = 0;
 var notdone_counter = 0;
 
+var oldName;
+var newName;
+
 if (jwt == null) {
   alert('You need to login before using this page');
   window.location.href = 'login';
@@ -37,6 +40,7 @@ function getUser() {
         }
         document.getElementById("email").value = objects["email"];
         document.getElementById("name").value = objects["name"];
+        oldName = document.getElementById("name").value;
         document.getElementById("created").innerHTML = objects["created_at"];
         document.getElementById("updated").innerHTML = objects["updated_at"];
       } else {
@@ -80,7 +84,7 @@ function isEmpty(str) {
 }
 
 function updateProfile() {
-  const newName = document.getElementById("name").value;
+  newName = document.getElementById("name").value;
   const xhttp = new XMLHttpRequest();
 
   xhttp.open("PATCH", "https://tasklist-minh.herokuapp.com/auth");
@@ -94,6 +98,12 @@ function updateProfile() {
   if (isEmpty(newName)) {
     Swal.fire({
       text: 'Please fill your username',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
+  } else if(oldName == newName) {
+    Swal.fire({
+      text: 'Please change your username',
       icon: 'error',
       confirmButtonText: 'OK'
     })
