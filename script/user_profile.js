@@ -30,7 +30,13 @@ function getUser() {
     if (this.readyState == 4) {
       if (this.status == 200) {
         const objects = JSON.parse(this.responseText);
-        document.getElementById("username").innerHTML = objects["email"];
+        if (objects["name"] == null) {
+          document.getElementById("username").innerHTML = objects["email"];
+        } else {
+          document.getElementById("username").innerHTML = objects["name"];
+        }
+        document.getElementById("email").value = objects["email"];
+        document.getElementById("name").value = objects["name"];
         document.getElementById("created").innerHTML = objects["created_at"];
         document.getElementById("updated").innerHTML = objects["updated_at"];
       } else {
@@ -69,23 +75,44 @@ function getUser() {
   };
 }
 
-function logOut(e) {
-  e.preventDefault();
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You need to login again if you want to access this page!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      localStorage.removeItem("jwt");
-      localStorage.removeItem("uid");
-      localStorage.removeItem("client");
-      window.location.href = 'login'
-    }
-  })
+function isEmpty(str) {
+  return !str.trim().length;
 }
+
+function updateProfile() {
+  const newName = document.getElementById("name").value;
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.open("PATCH", "https://tasklist-minh.herokuapp.com/auth");
+  xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  xhttp.setRequestHeader("Access-Token", jwt);
+  xhttp.setRequestHeader("Uid", uid);
+  xhttp.setRequestHeader("Client", client);
+  xhttp.send(JSON.stringify({
+    "name": newName
+  }));
+  if (isEmpty(newName)) {
+    Swal.fire({
+      text: 'Please fill your username',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    })
+  } else {
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4) {
+        if (this.status == 200) {
+          Swal.fire({
+            text: 'Updated successful',
+            icon: 'success',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+            }
+          });
+        }
+      }
+    }
+  }
+};
 
