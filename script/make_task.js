@@ -65,6 +65,30 @@ function loadingFolders() {
     };
 }
 
+function loadingUsers() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `${serverUrl}/users`);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Access-Token", jwt);
+    xhttp.setRequestHeader("Uid", uid);
+    xhttp.setRequestHeader("Client", client);
+    xhttp.send();
+    const user_list = document.getElementById("users_list");
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            const objects = JSON.parse(this.responseText);
+            for (let list of objects) {
+                user_options = document.createElement("option");
+                user_options.innerHTML = list["email"];
+                user_options.value = list["id"];
+                user_list.appendChild(user_options);
+            }
+        }
+    };
+}
+loadingUsers();
+
 function selectFolder() {
     localStorage.setItem('selectedFolder', document.getElementById('folder_lists').value);
     document.getElementById("table").style.display = "inline";
@@ -283,7 +307,8 @@ function fetchTask() {
                         btn_share.addEventListener('click', function () {
                             const confirm = document.getElementById('share_btn');
                             confirm.addEventListener('click', function () {
-                                let share_user = document.getElementById('share_name').value;
+                                const share_user = document.getElementById('users_list').value;
+                                const share_user_text = document.getElementById('users_list').options[document.getElementById('users_list').selectedIndex].text;
                                 xhttp.open("POST", `${serverUrl}/task_lists/${selected}/share`);
                                 xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                                 xhttp.setRequestHeader("Access-Token", jwt);
@@ -295,7 +320,7 @@ function fetchTask() {
                                     "is_write": true
                                 }));
                                 Swal.fire({
-                                    html: "<span class = 'thick'>" + list["name"] + "</span> task shared to <span class = 'thick'>" + share_user + "</span>.",
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task shared to <span class = 'thick'>" + share_user_text + "</span>.",
                                     icon: 'success',
                                     allowOutsideClick: false,
                                     allowEscapeKey: false,
