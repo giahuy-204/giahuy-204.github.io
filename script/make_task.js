@@ -20,7 +20,6 @@ function loadingFolders() {
     let folder_counter = 0;
 
     document.getElementById("table").style.display = "none";
-    document.getElementById("share").style.display = "none";
     document.getElementById("btn_addtask").style.display = "none";
     document.getElementById("notify").innerHTML = "Select a folder to begin with. <br>If you don't have a folder, make one.";
 
@@ -69,7 +68,6 @@ function loadingFolders() {
 function selectFolder() {
     localStorage.setItem('selectedFolder', document.getElementById('folder_lists').value);
     document.getElementById("table").style.display = "inline";
-    document.getElementById("share").style.display = "inline";
     document.getElementById("btn_addtask").style.display = "inline";
     document.getElementById("notify").innerHTML = "";
     document.getElementById("filter_select").value = "all";
@@ -101,18 +99,13 @@ function fetchTask() {
                 const objects = JSON.parse(this.responseText);
                 if (objects.length === 0) {
                     document.getElementById("table").style.display = "none";
-                    document.getElementById("share").style.display = "none";
                     document.getElementById("notify").innerHTML = "Your task is empty! Start to make some by press the button below";
                 } else {
+                    document.getElementById("th_options").innerHTML = "Task options";
+                    document.getElementById("th_name").innerHTML = "Task name";
+                    document.getElementById("th_status").innerHTML = "Task status";
                     for (let list of objects) {
-                        //create random text for td detail test
                         const task_lists = document.getElementById("task_lists");
-
-                        // const tokens = ['Gone', 'Four', 'Them', 'Task'];
-                        // let text = '';
-                        // for (let i = 0; i < Math.floor(Math.random() * 15) + 5; i++) {
-                        //     text += tokens[Math.floor(Math.random() * tokens.length)];
-                        // }
 
                         const tr = document.createElement("tr");
                         const th_id = document.createElement("th");
@@ -123,12 +116,12 @@ function fetchTask() {
 
                         const edit_button = document.createElement("button");
                         const completed_button = document.createElement("button");
-                        const move_button = document.createElement("button");
+                        const share_button = document.createElement("button");
                         const delete_button = document.createElement("button");
 
                         const edit_i = document.createElement("i");
                         const completed_i = document.createElement("i");
-                        const move_i = document.createElement("i");
+                        const share_i = document.createElement("i");
                         const delete_i = document.createElement("i");
 
                         th_id.scope = "row";
@@ -137,7 +130,7 @@ function fetchTask() {
                         edit_button.title = "Edit";
                         edit_button.setAttribute("data-toggle", "modal");
                         edit_button.setAttribute("data-target", "#editModal");
-                        edit_i.className = "fa fa-pencil-square-o";
+                        edit_i.className = "fa fa-edit";
 
                         completed_button.className = "btn btn-success 1";
                         completed_button.title = "Mark as completed";
@@ -145,11 +138,11 @@ function fetchTask() {
                         completed_button.setAttribute("data-target", "#completedModal");
                         completed_i.className = "fa fa-check-square-o";
 
-                        move_button.className = "btn btn-warning 1";
-                        move_button.title = "Move to another folder";
-                        move_button.setAttribute("data-toggle", "modal");
-                        move_button.setAttribute("data-target", "#moveModal");
-                        move_i.className = "fa fa-exchange";
+                        share_button.className = "btn btn-info 1";
+                        share_button.title = "Share";
+                        share_button.setAttribute("data-toggle", "modal");
+                        share_button.setAttribute("data-target", "#shareModal");
+                        share_i.className = "fa fa-share-alt";
 
                         delete_button.className = "btn btn-danger 1";
                         delete_button.title = "Delete";
@@ -164,16 +157,14 @@ function fetchTask() {
                         } else {
                             td_status.innerHTML = "Completed";
                             edit_button.style.display = "none";
-                            move_button.style.display = "none";
+                            share_button.style.display = "none";
                             completed_button.style.display = "none";
                         }
-
                         if (!list["description"].trim()) {
                             td_details.innerHTML = "No detail has been received.";
                         } else {
                             td_details.innerHTML = list["description"];
                         }
-                        td_options.style.display = "table-cell";
 
                         //create table
                         task_lists.appendChild(tr);
@@ -189,8 +180,8 @@ function fetchTask() {
                         td_options.appendChild(completed_button);
                         completed_button.appendChild(completed_i);
 
-                        td_options.appendChild(move_button);
-                        move_button.appendChild(move_i);
+                        td_options.appendChild(share_button);
+                        share_button.appendChild(share_i);
 
                         td_options.appendChild(delete_button);
                         delete_button.appendChild(delete_i);
@@ -287,6 +278,36 @@ function fetchTask() {
                                 });
                             })
                         })
+
+                        const btn_share = document.getElementsByClassName("btn btn-info 1")[counter];
+                        btn_share.addEventListener('click', function () {
+                            const confirm = document.getElementById('share_btn');
+                            confirm.addEventListener('click', function () {
+                                let share_user = document.getElementById('share_name').value;
+                                xhttp.open("POST", `${serverUrl}/task_lists/${selected}/share`);
+                                xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                xhttp.setRequestHeader("Access-Token", jwt);
+                                xhttp.setRequestHeader("Uid", uid);
+                                xhttp.setRequestHeader("Client", client);
+                                xhttp.send(JSON.stringify({
+                                    "user_id": share_user,
+                                    "task_list_id": list["id"],
+                                    "is_write": true
+                                }));
+                                Swal.fire({
+                                    html: "<span class = 'thick'>" + list["name"] + "</span> task shared to <span class = 'thick'>" + share_user + "</span>.",
+                                    icon: 'success',
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            })
+                        })
+
                         counter++;
                     }
                 }
@@ -543,7 +564,7 @@ function filterStatus() {
 }
 
 function sortTableNumerically() {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("table");
     switching = true;
     dir = "asc";
@@ -580,7 +601,7 @@ function sortTableNumerically() {
 }
 
 function sortTableAlphabetical(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
     table = document.getElementById("table");
     switching = true;
     dir = "asc";
@@ -611,6 +632,78 @@ function sortTableAlphabetical(n) {
             if (switchcount == 0 && dir == "asc") {
                 dir = "desc";
                 switching = true;
+            }
+        }
+    }
+}
+
+function getSharedTask() {
+    folder_lists.value = 1;
+
+    document.getElementById("table").style.display = "inline";
+    document.getElementById("btn_addtask").style.display = "inline";
+    document.getElementById("notify").innerHTML = "";
+    document.getElementById("filter_select").value = "all";
+    counter = 0;
+    $("#task_lists").empty();
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `${serverUrl}/shared`);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Access-Token", jwt);
+    xhttp.setRequestHeader("Uid", uid);
+    xhttp.setRequestHeader("Client", client);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                const objects = JSON.parse(this.responseText);
+                if (objects.length === 0) {
+                    document.getElementById("table").style.display = "none";
+                    document.getElementById("notify").innerHTML = "Unfortunately, no one willing to share their task with you ┗( T﹏T )┛.";
+                } else {
+                    document.getElementById("th_options").innerHTML = "Task shared by";
+                    document.getElementById("th_name").innerHTML = "Task list";
+                    for (let list of objects) {
+                        const task_lists = document.getElementById("task_lists");
+
+                        const tr = document.createElement("tr");
+                        const th_id = document.createElement("th");
+                        const td_name = document.createElement("td");
+                        const td_status = document.createElement("td");
+                        const td_details = document.createElement("td");
+                        const td_options = document.createElement("td");
+
+                        const random = Math.floor(Math.random() * 2) + 1
+
+                        th_id.scope = "row";
+
+                        th_id.innerHTML = counter + 1;
+                        td_name.innerHTML = list["name"];
+
+                        if (list["description"] == null) {
+                            td_details.innerHTML = "No details has been received";
+                        } else {
+                            td_details.innerHTML = list["description"];
+                        }                        
+                        td_options.innerHTML = list["user_id"];            
+
+                        if (random == 1) {
+                            td_status.innerHTML = "Not done"
+                        } else {
+                            td_status.innerHTML = "Done"
+                        }
+                        //create table
+                        task_lists.appendChild(tr);
+                        tr.appendChild(th_id);
+                        tr.appendChild(td_name);
+                        tr.appendChild(td_status);
+                        tr.appendChild(td_details);
+                        tr.appendChild(td_options);
+
+                        counter++;
+                    }
+                }
             }
         }
     }

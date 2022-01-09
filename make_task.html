@@ -92,8 +92,14 @@
             </div>
         </div> -->
         <select id="folder_lists" autofocus onchange="selectFolder()">
-            <option value="" disabled selected hidden> -- Choose folder -- </option>
+            <option value="1" disabled selected hidden> -- Choose folder -- </option>
         </select>
+    </div>
+
+    <div class="col-auto d-flex align-items-center">
+        <label class="text-secondary my-2 pr-2 view-opt-label">Or check task being shared: </label>
+        <br>
+        <button class ="btn btn-secondary" onclick="getSharedTask()"><i class="fa fa-share"></i></button>
     </div>
 
     <div class="container m-5 p-2 rounded mx-auto bg-light shadow">
@@ -133,10 +139,10 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col" style="width: 90px" onclick="sortTableNumerically()">Task ID</th>
-                                <th scope="col" style="width: 150px" onclick="sortTableAlphabetical(0)">Task name</th>
-                                <th scope="col" style="width: 150px" onclick="sortTableAlphabetical(1)">Task status</th>
-                                <th scope="col" style="width: 400px" onclick="sortTableAlphabetical(2)">Task details</th>
-                                <th scope="col" style="width: 200px">Options</th>
+                                <th scope="col" style="width: 150px" id = "th_name" onclick="sortTableAlphabetical(0)">Task name</th>
+                                <th scope="col" style="width: 150px" id = "th_status" onclick="sortTableAlphabetical(1)">Task status</th>
+                                <th scope="col" style="width: 400px" id = "th_details" onclick="sortTableAlphabetical(2)">Task details</th>
+                                <th scope="col" style="width: 200px" id = "th_options">Options</th>
                             </tr>
                         </thead>
                         <tbody id="task_lists">
@@ -166,8 +172,6 @@
                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addModal"
                                 id="btn_addtask" onclick="loadFolderUpdateDeleteAddTask()">Add
                                 new task</button>
-                            <button type="button" class="btn btn-info" data-toggle="modal" id="share"
-                                data-target="#shareModal">Share</button>
                             <br>
                             <button type="button" class="btn btn-warning" data-toggle="modal"
                                 data-target="#updatedFolderModal" onclick="loadFolderUpdateDeleteAddTask()">Update
@@ -278,45 +282,6 @@
                         </div>
                     </div>
 
-                    <div class="modal fade" id="moveModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Move task to another folder</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                <!-- Modal body -->     
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="name">Choose folder to move: </label>
-                                            <div class="dropdown">
-                                                <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    Folder list
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                    <a class="dropdown-item" href="#">Folder one</a>
-                                                    <a class="dropdown-item" href="#">Folder two</a>
-                                                    <a class="dropdown-item" href="#">Folder four Clueless</a>
-                                                    <a class="dropdown-item" id="addFolder " data-toggle="modal"
-                                                        data-target="#addFolderModal">Add new folder</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Confirm</button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="modal fade" id="completedModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -390,7 +355,7 @@
                                 </div>
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal">Share</button>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal" id ="share_btn">Share</button>
                                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
