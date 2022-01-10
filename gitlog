@@ -1,0 +1,286 @@
+[33mcommit cad7ddd54c2318b3ac3aff982822f0fdafa6c332[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Jan 10 09:08:48 2022 +0700
+
+    duplicate and move to another folder
+
+[33mcommit 3283ba41e73057ee368c6ceff0b9edcd544571c9[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Jan 9 21:18:55 2022 +0700
+
+    share (done)
+
+[33mcommit 1638c0e7570a62e21b44ab77637a74b6ad870046[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Jan 9 12:22:09 2022 +0700
+
+    the ocd incident
+
+[33mcommit 7d495cd0450edc42c99b81940e169a9671fed1ff[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Jan 9 12:18:31 2022 +0700
+
+    share (half done)
+
+[33mcommit ae9d903343e7b0c214d93ac9da32e56e2eef386f[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Jan 6 19:32:44 2022 +0700
+
+    fix href
+
+[33mcommit 8456dc9178ddd7f2c3409f9eaaa47f7b1b4c016b[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Fri Dec 31 00:50:27 2021 +0700
+
+    sort table alphabet and numeric
+
+[33mcommit 0bcfbfc6a53e60ef025150455e84acc8f160ab0d[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 30 23:59:09 2021 +0700
+
+    remove outdated count
+
+[33mcommit 07e0e56adbc1348b8f21c73f0fea00815ef9ab99[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 30 23:56:03 2021 +0700
+
+    update swal and table width
+
+[33mcommit ddb5f8608478515533166fa318420f0494e06e83[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 30 09:21:11 2021 +0700
+
+    verify for not changing username
+
+[33mcommit 035e48975bcfdf47cb75b2f7b418dbb103c72a27[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 30 09:14:55 2021 +0700
+
+    update username
+
+[33mcommit d6f74103fdb9bdaec308f5cd40100395573eedab[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 23 18:30:56 2021 +0700
+
+    another html extension
+
+[33mcommit a1d881a22952f4035575d8c24f6b72acc34c2265[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 23 13:21:24 2021 +0700
+
+    remove html extension (not working if deploy local)
+
+[33mcommit f8a324a0b4b75a2cd01c42cc9b7844e46e860f72[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 23 13:18:01 2021 +0700
+
+    testing the html extension
+
+[33mcommit 27545afc4c1ec0c0e3cdb0c388ce955c0dd45876[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 23 13:10:52 2021 +0700
+
+    change api url, add task detail
+
+[33mcommit 084f7a63fe71676f0c76dffe00f67293421365e2[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 22 23:34:27 2021 +0700
+
+    formatted string for errors
+
+[33mcommit d0f317484dc7987cd5ed0b8eeff2fb5f8b95f3aa[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 22 23:13:13 2021 +0700
+
+    shorter code
+
+[33mcommit 9b828db68fa37b94806af8600d5c61e8b94a2c0f[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 22 19:41:52 2021 +0700
+
+    hptfoxa
+
+[33mcommit 5fa880ceeec052f4ed2f75b246ace0deacb32c88[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 22 19:37:11 2021 +0700
+
+    change password, navbar fix, delete useless file
+
+[33mcommit e06518fefb21e3dc7da9b782bc16dd3953df0ac0[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Dec 20 12:22:42 2021 +0700
+
+    filter status for tasks
+
+[33mcommit 0df253f54cf790fbb4c8924d2fb135d70c67572f[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 16 09:03:53 2021 +0700
+
+    remove unusing item when logout
+
+[33mcommit d7bbf6aa9d104ea83d1b5cb448af05098567bd61[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 15 20:59:49 2021 +0700
+
+    update folder name
+
+[33mcommit 00ba7a15760f8df1ea59e9f0aa75b98c5e1cd95e[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Wed Dec 15 17:04:32 2021 +0700
+
+    execute function after for loop completion
+
+[33mcommit 9508011b697f75fc7c150938dad9b9823726043b[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 14:36:02 2021 +0700
+
+    change method for xhr
+
+[33mcommit d13d3562622f17d0f667f7c8144d9a318487c738[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 14:32:52 2021 +0700
+
+    ocd
+
+[33mcommit 997952d616b48b765f4f893ecc2a88dfaa4491a0[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 14:28:51 2021 +0700
+
+    count task for user profile
+
+[33mcommit 8e88701dd9e6058529a79f1f320774b97a459e56[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 14:15:57 2021 +0700
+
+    update task + mark task as done
+
+[33mcommit 39bf88039795c9a2da0e8c9ded3c2772894eac6e[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 00:15:34 2021 +0700
+
+    Update README.md
+
+[33mcommit aa7150abc1de9ccca7599eca9fd9980d8b4d2772[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 00:14:39 2021 +0700
+
+    Update README.md
+
+[33mcommit 513081fc973e0e3350cbcba45164c48de4a6e115[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Tue Dec 14 00:07:46 2021 +0700
+
+    add task inside folder
+
+[33mcommit 03c05922251293718486d4fd8781ee18530f4706[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Dec 13 21:59:52 2021 +0700
+
+    add folders and function of it (tasks = folder child)
+
+[33mcommit 63a219741f9000476c7aeea689af73bbcf1c1e20[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 21:24:47 2021 +0700
+
+    remove console log (except profile for checking)
+
+[33mcommit 1ec2fa5012f01f7d3f1562c8a42ee59247f899c7[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 21:22:28 2021 +0700
+
+    remove useless attribute
+
+[33mcommit 52dce8e09b2bb62c22a34ac90f3271938f92c5a0[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 21:01:47 2021 +0700
+
+    better random text
+
+[33mcommit 10697385a360d26d29f22f257c44f88391eeb936[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 20:53:35 2021 +0700
+
+    counting task for user profile
+
+[33mcommit 9cf2ee5383cef11715786ce21931106e78705cba[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 19:31:56 2021 +0700
+
+    ocd
+
+[33mcommit 86705bae9a2f61428a9e255d007eab6c43dab02e[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 19:30:35 2021 +0700
+
+    auth if object return null
+
+[33mcommit 9e35a633c5d75697e10df75106f379d3659fad2b[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 19:06:36 2021 +0700
+
+    formatted all files, delete function, auth for login and register
+
+[33mcommit f0d677a6365ed033f162ad2035bba6a56b4240fb[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 15:01:18 2021 +0700
+
+    change domain due to mixed content
+
+[33mcommit d11410d7fa5005875e099425b0af92698a61f30d[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 14:56:25 2021 +0700
+
+    Update make_task.html
+
+[33mcommit 2983d1b8f60bea22d58aa437ac6fde3ed0730f2b[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Sun Dec 12 14:50:37 2021 +0700
+
+    change navbar before and after login
+
+[33mcommit c2cf6b08d9a63c47db077c227d86284713cf6f13[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 9 11:19:04 2021 +0700
+
+    fetch task btn
+
+[33mcommit 611b73a54256cea4a3b8a1e39a713514b68f86b9[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Thu Dec 9 10:22:06 2021 +0700
+
+    create task + swal
+
+[33mcommit 66b26fd39eb135617f912795f23d6f7b8e753c1b[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Dec 6 12:51:51 2021 +0700
+
+    swal for profile (done for first three)
+
+[33mcommit 5bd0f1a144c0e88a1d17098061cd4ac11ce7002d[m
+Merge: 0c4db6c 2b86bd5
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Dec 6 11:10:01 2021 +0700
+
+    Merge branch 'main' of https://github.com/giahuy-204/giahuy-204.github.io
+
+[33mcommit 0c4db6cf3607949401d803021db71fb40cd5cdae[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Date:   Mon Dec 6 11:09:54 2021 +0700
+
+    fix bug jwt, uid, client
+
+[33mcommit 2b86bd5c128a4b57e45d5bccc76f41a64e00d697[m
+Author: Huy Dang <54048975+giahuy-204@users.noreply.github.com>
+Date:   Thu Dec 2 18:37:14 2021 +0700
+
+    Update README.md
+
+[33mcommit bf23eaa30becdcde69719afdcbbfdc31829ce144[m
+Author: Huy Dang <54048975+giahuy-204@users.noreply.github.com>
+Date:   Thu Dec 2 18:37:00 2021 +0700
+
+    Update README.md
+
+[33mcommit ced690afa4b3508c1c7681ad8b34042fa89079c6[m
+Author: Huy Dang <giahuy.dng@gmail.com>
+Da

@@ -34,14 +34,14 @@ function loginFunction() {
     }));
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
-        jwt = xhttp.getResponseHeader('Access-Token');
-        uid = xhttp.getResponseHeader('Uid');
-        client = xhttp.getResponseHeader('Client');
-        localStorage.setItem('jwt', jwt);
-        localStorage.setItem('uid', uid);
-        localStorage.setItem('client', client);
-        localStorage.setItem('password', password);
         if (this.status == 200) {
+          jwt = xhttp.getResponseHeader('Access-Token');
+          uid = xhttp.getResponseHeader('Uid');
+          client = xhttp.getResponseHeader('Client');
+          localStorage.setItem('jwt', jwt);
+          localStorage.setItem('uid', uid);
+          localStorage.setItem('client', client);
+          localStorage.setItem('password', password);
           Swal.fire({
             text: 'Login successful',
             icon: 'success',
@@ -50,7 +50,7 @@ function loginFunction() {
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'user_profile.html';
+              window.history.back();
             }
           });
         } else {
