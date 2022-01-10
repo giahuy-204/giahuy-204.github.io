@@ -17,6 +17,7 @@ if (jwt == null) {
 
 const serverUrl = 'https://tasklist-minh.herokuapp.com/';
 
+//functions execute after loading / reload
 function loadingFolders() {
     let folder_counter = 0;
 
@@ -71,6 +72,22 @@ function loadingFolders() {
     };
 }
 
+function loadFolderUpdateDeleteAddTask() {
+    if (localStorage.getItem('selectedFolder')) {
+        addtaskfolders_lists.value = localStorage.getItem('selectedFolder');
+        updatefolder_lists.value = localStorage.getItem('selectedFolder');
+        deletefolder_lists.value = localStorage.getItem('selectedFolder');
+
+        document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
+        localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
+    }
+}
+
+function loadingOnchangeSelectUpdate() {
+    document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
+    localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
+}
+
 function loadingUsers() {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", `${serverUrl}/users`);
@@ -95,6 +112,86 @@ function loadingUsers() {
 }
 loadingUsers();
 
+function loadingFolderOnReload() {
+    if (localStorage.getItem('selectedFolder')) {
+        folder_lists.value = localStorage.getItem('selectedFolder');
+        selectFolder();
+    }
+}
+
+//functions execute when select folder / select shared tasks
+function getSharedTask() {
+    folder_lists.value = 1;
+
+    document.getElementById("table").style.display = "inline";
+    document.getElementById("btn_addtask").style.display = "inline";
+    document.getElementById("notify").innerHTML = "";
+    document.getElementById("filter_select").value = "all";
+    counter = 0;
+    $("#task_lists").empty();
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", `${serverUrl}/shared`);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Access-Token", jwt);
+    xhttp.setRequestHeader("Uid", uid);
+    xhttp.setRequestHeader("Client", client);
+    xhttp.send();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                const objects = JSON.parse(this.responseText);
+                if (objects.length === 0) {
+                    document.getElementById("table").style.display = "none";
+                    document.getElementById("notify").innerHTML = "Unfortunately, no one willing to share their task with you ┗( T﹏T )┛.";
+                } else {
+                    document.getElementById("th_options").innerHTML = "Task shared by";
+                    document.getElementById("th_name").innerHTML = "Task list";
+                    for (let list of objects) {
+                        const task_lists = document.getElementById("task_lists");
+
+                        const tr = document.createElement("tr");
+                        const th_id = document.createElement("th");
+                        const td_name = document.createElement("td");
+                        const td_status = document.createElement("td");
+                        const td_details = document.createElement("td");
+                        const td_options = document.createElement("td");
+
+                        const random = Math.floor(Math.random() * 2) + 1
+
+                        th_id.scope = "row";
+
+                        th_id.innerHTML = counter + 1;
+                        td_name.innerHTML = list["name"];
+
+                        if (list["description"] == null) {
+                            td_details.innerHTML = "No details has been received";
+                        } else {
+                            td_details.innerHTML = list["description"];
+                        }                        
+                        td_options.innerHTML = list["user_id"];            
+
+                        if (random == 1) {
+                            td_status.innerHTML = "Not done"
+                        } else {
+                            td_status.innerHTML = "Done"
+                        }
+                        //create table
+                        task_lists.appendChild(tr);
+                        tr.appendChild(th_id);
+                        tr.appendChild(td_name);
+                        tr.appendChild(td_status);
+                        tr.appendChild(td_details);
+                        tr.appendChild(td_options);
+
+                        counter++;
+                    }
+                }
+            }
+        }
+    }
+}
+
 function selectFolder() {
     localStorage.setItem('selectedFolder', document.getElementById('folder_lists').value);
     document.getElementById("table").style.display = "inline";
@@ -106,13 +203,7 @@ function selectFolder() {
     fetchTask();
 }
 
-function loadingFolderOnReload() {
-    if (localStorage.getItem('selectedFolder')) {
-        folder_lists.value = localStorage.getItem('selectedFolder');
-        selectFolder();
-    }
-}
-
+//function for fetching task / assign task function for buttons inside it
 function fetchTask() {
     let selected = folder_lists.options[folder_lists.selectedIndex].value;
     const xhttp = new XMLHttpRequest();
@@ -450,25 +541,7 @@ function fetchTask() {
     }
 }
 
-function search() {
-    let input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("table");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
-
+//functions for interacting with folders / new task
 function addFolder() {
     let folderName = document.getElementById('addFolder_name').value;
     if (folderName == "") {
@@ -558,71 +631,6 @@ function deleteFolder() {
     }
 }
 
-function loadFolderUpdateDeleteAddTask() {
-    if (localStorage.getItem('selectedFolder')) {
-        addtaskfolders_lists.value = localStorage.getItem('selectedFolder');
-        updatefolder_lists.value = localStorage.getItem('selectedFolder');
-        deletefolder_lists.value = localStorage.getItem('selectedFolder');
-
-        document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
-        localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
-    }
-}
-
-function addTask() {
-    const task_name = document.getElementById("addTask_name").value;
-    const task_description = document.getElementById("addTask_detail").value;
-    let folder_value = addtaskfolders_lists.value;
-    if (task_name == "") {
-        Swal.fire({
-            text: 'Oopsie hold on task name is empty 😂',
-            icon: 'error',
-            confirmButtonText: 'OK'
-        });
-    } else {
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.open("POST", `${serverUrl}/task_lists/${folder_value}/todos`);
-        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        xhttp.setRequestHeader("Access-Token", jwt);
-        xhttp.setRequestHeader("Uid", uid);
-        xhttp.setRequestHeader("Client", client);
-        xhttp.send(JSON.stringify({
-            "name": task_name,
-            "description": task_description
-        }));
-
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 201) {
-                    Swal.fire({
-                        html: "<span class = 'thick'>" + task_name + "</span> task added!",
-                        icon: 'success',
-                        allowOutsideClick: false,
-                        allowEscapeKey: false,
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    })
-                } else {
-                    Swal.fire({
-                        text: 'Please choose folder `(*>﹏<*)′',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            }
-        }
-    };
-}
-
-function loadingOnchangeSelectUpdate() {
-    document.getElementById("updatefolder_name").value = updatefolder_lists.options[updatefolder_lists.selectedIndex].text;
-    localStorage.setItem('selectedUpdateFolderText', updatefolder_lists.options[updatefolder_lists.selectedIndex].text);
-}
-
 function updateFolder() {
     let folder_oldname = localStorage.getItem('selectedUpdateFolderText');
     const folder_name = document.getElementById("updatefolder_name").value;
@@ -678,6 +686,56 @@ function updateFolder() {
     };
 }
 
+function addTask() {
+    const task_name = document.getElementById("addTask_name").value;
+    const task_description = document.getElementById("addTask_detail").value;
+    let folder_value = addtaskfolders_lists.value;
+    if (task_name == "") {
+        Swal.fire({
+            text: 'Oopsie hold on task name is empty 😂',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+    } else {
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST", `${serverUrl}/task_lists/${folder_value}/todos`);
+        xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhttp.setRequestHeader("Access-Token", jwt);
+        xhttp.setRequestHeader("Uid", uid);
+        xhttp.setRequestHeader("Client", client);
+        xhttp.send(JSON.stringify({
+            "name": task_name,
+            "description": task_description
+        }));
+
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 201) {
+                    Swal.fire({
+                        html: "<span class = 'thick'>" + task_name + "</span> task added!",
+                        icon: 'success',
+                        allowOutsideClick: false,
+                        allowEscapeKey: false,
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    })
+                } else {
+                    Swal.fire({
+                        text: 'Please choose folder `(*>﹏<*)′',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            }
+        }
+    };
+}
+
+//Functions for outside of tasks
 function filterStatus() {
     const filter = document.getElementById("filter_select");
     const table = document.getElementById("table");
@@ -693,6 +751,25 @@ function filterStatus() {
             }
         } else {
             rows[i].style.display = "table-row";
+        }
+    }
+}
+
+function search() {
+    let input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("table");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
         }
     }
 }
@@ -771,76 +848,4 @@ function sortTableAlphabetical(n) {
     }
 }
 
-function getSharedTask() {
-    folder_lists.value = 1;
-
-    document.getElementById("table").style.display = "inline";
-    document.getElementById("btn_addtask").style.display = "inline";
-    document.getElementById("notify").innerHTML = "";
-    document.getElementById("filter_select").value = "all";
-    counter = 0;
-    $("#task_lists").empty();
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", `${serverUrl}/shared`);
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.setRequestHeader("Access-Token", jwt);
-    xhttp.setRequestHeader("Uid", uid);
-    xhttp.setRequestHeader("Client", client);
-    xhttp.send();
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                const objects = JSON.parse(this.responseText);
-                if (objects.length === 0) {
-                    document.getElementById("table").style.display = "none";
-                    document.getElementById("notify").innerHTML = "Unfortunately, no one willing to share their task with you ┗( T﹏T )┛.";
-                } else {
-                    document.getElementById("th_options").innerHTML = "Task shared by";
-                    document.getElementById("th_name").innerHTML = "Task list";
-                    for (let list of objects) {
-                        const task_lists = document.getElementById("task_lists");
-
-                        const tr = document.createElement("tr");
-                        const th_id = document.createElement("th");
-                        const td_name = document.createElement("td");
-                        const td_status = document.createElement("td");
-                        const td_details = document.createElement("td");
-                        const td_options = document.createElement("td");
-
-                        const random = Math.floor(Math.random() * 2) + 1
-
-                        th_id.scope = "row";
-
-                        th_id.innerHTML = counter + 1;
-                        td_name.innerHTML = list["name"];
-
-                        if (list["description"] == null) {
-                            td_details.innerHTML = "No details has been received";
-                        } else {
-                            td_details.innerHTML = list["description"];
-                        }                        
-                        td_options.innerHTML = list["user_id"];            
-
-                        if (random == 1) {
-                            td_status.innerHTML = "Not done"
-                        } else {
-                            td_status.innerHTML = "Done"
-                        }
-                        //create table
-                        task_lists.appendChild(tr);
-                        tr.appendChild(th_id);
-                        tr.appendChild(td_name);
-                        tr.appendChild(td_status);
-                        tr.appendChild(td_details);
-                        tr.appendChild(td_options);
-
-                        counter++;
-                    }
-                }
-            }
-        }
-    }
-}
-
-//TEARS AND BLOOD NEEDS TO BE SARCIFIED TO MAKE THIS FAR 
+//xD
