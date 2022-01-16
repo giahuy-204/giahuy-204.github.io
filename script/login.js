@@ -50,7 +50,7 @@ function loginFunction() {
             confirmButtonText: 'OK'
           }).then((result) => {
             if (result.isConfirmed) {
-              window.history.back();
+              window.location.href = 'user_profile.html';
             }
           });
         } else {

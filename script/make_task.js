@@ -33,6 +33,13 @@ function loadingFolders() {
     xhttp.setRequestHeader("Client", client);
     xhttp.send();
 
+    xhttp.open("GET", `${serverUrl}/shared`);
+    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp.setRequestHeader("Access-Token", jwt);
+    xhttp.setRequestHeader("Uid", uid);
+    xhttp.setRequestHeader("Client", client);
+    xhttp.send();
+
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             const objects = JSON.parse(this.responseText);
@@ -518,6 +525,8 @@ function fetchTask() {
                                 xhttp.send(JSON.stringify({
                                     "user_id": share_user,
                                     "task_list_id": list["id"],
+                                    "description": list["name"],
+                                    "is_write": true,
                                 }));
                                 Swal.fire({
                                     html: "<span class = 'thick'>" + list["name"] + "</span> task shared to <span class = 'thick'>" + share_user_text + "</span>.",
