@@ -33,13 +33,6 @@ function loadingFolders() {
     xhttp.setRequestHeader("Client", client);
     xhttp.send();
 
-    xhttp.open("GET", `${serverUrl}/shared`);
-    xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    xhttp.setRequestHeader("Access-Token", jwt);
-    xhttp.setRequestHeader("Uid", uid);
-    xhttp.setRequestHeader("Client", client);
-    xhttp.send();
-
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             const objects = JSON.parse(this.responseText);
@@ -70,6 +63,32 @@ function loadingFolders() {
                 addtaskfolders_lists.appendChild(addtask_options);
                 updatefolder_lists.appendChild(updatefolder_options);
                 movetaskfolders_list.appendChild(movefolder_options)
+                folder_counter++;
+                if (folder_counter == objects.length) {
+                    loadingFolderOnReload();
+                }
+            }
+        }
+    };
+
+    const xhttp_shared = new XMLHttpRequest();
+    xhttp_shared.open("GET", `${serverUrl}/shared`);
+    xhttp_shared.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhttp_shared.setRequestHeader("Access-Token", jwt);
+    xhttp_shared.setRequestHeader("Uid", uid);
+    xhttp_shared.setRequestHeader("Client", client);
+    xhttp_shared.send();
+
+    xhttp_shared.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            const objects = JSON.parse(this.responseText);
+            for (let list of objects) {
+
+                options = document.createElement("option");
+                options.innerHTML = list["name"];
+                options.value = list["id"];
+
+                folder_lists.appendChild(options);
                 folder_counter++;
                 if (folder_counter == objects.length) {
                     loadingFolderOnReload();
