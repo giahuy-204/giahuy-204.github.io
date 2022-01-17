@@ -9,7 +9,6 @@ const deletefolder_lists = document.getElementById("deletefolder_lists")
 const addtaskfolders_lists = document.getElementById("addtaskfolders_lists")
 const updatefolder_lists = document.getElementById("updatefolder_lists");
 const movetaskfolders_list = document.getElementById("movetaskfolders_list");
-const sharefolders_list = document.getElementById("sharefolder_lists");
 
 if (jwt == null) {
     alert('You need to login before try to make a task!');
@@ -89,7 +88,7 @@ function loadingFolders() {
                 options.innerHTML = list["name"];
                 options.value = list["id"];
 
-                sharefolders_list.appendChild(options);
+                folder_lists.appendChild(options);
                 folder_counter++;
                 if (folder_counter == objects.length) {
                     loadingFolderOnReload();
